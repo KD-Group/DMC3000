@@ -35,7 +35,7 @@ MOTION_EXT = Extension(
     sources=[
         'src/motion.i',
     ],
-    library_dirs=['.'],
+    library_dirs=['src'],
     libraries=['LTDMC'],
     swig_opts=['-c++'],
     extra_compile_args=[  # The g++ (4.8) in Travis needs this

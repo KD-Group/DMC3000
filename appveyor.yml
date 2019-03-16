@@ -30,7 +30,6 @@ test_script:
 
 build_script:
   - "[ -e dist ] && rm dist -rf || true"
-  - swig -python -c++ src/motion.i
   - "%PYTHON%\\python.exe setup.py bdist_wheel"
 
 artifacts:
