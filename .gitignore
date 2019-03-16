@@ -26,6 +26,7 @@ motion.py
 *.so
 *.dylib
 *.dll
+!DMC3000/LTDMC.dll
 
 # Fortran module files
 *.mod
@@ -36,6 +37,7 @@ motion.py
 *.la
 *.a
 *.lib
+!DMC3000/LTDMC.lib
 
 # Executables
 *.exe

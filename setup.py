@@ -7,13 +7,13 @@ setup.py file for motion module
 # from setuptools import find_packages
 # from distutils.core import setup, Extension
 #
-# motion_module = Extension('_motion', sources=['./src/motion_wrap.cxx'], library_dirs=['./src'], libraries=['LTDMC'])
+# motion_module = Extension('_motion', sources=['./DMC3000/motion_wrap.cxx'], library_dirs=['./DMC3000'], libraries=['LTDMC'])
 #
 # setup(name='motion',
 #       version='0.1',
 #       author="SF Zhou, WingC",
 #       author_email="1018957763@qq.com",
-#       description="""Python module for src""",
+#       description="""Python module for DMC3000""",
 #       license='GPL',
 #       classifiers=[
 #           'Development Status :: 3 - Alpha',
@@ -24,18 +24,27 @@ setup.py file for motion module
 #       ],
 #       ext_modules=[motion_module],
 #       packages=find_packages(),
-#       package_data={'src': ['*.h', '*.dll', '*.lib']}
+#       package_data={'DMC3000': ['*.h', '*.dll', '*.lib']}
 #       )
 
+import os
+import shutil
 from setuptools import Extension, find_packages, setup
 from setuptools.command.build_py import build_py
 
+
+def copy_ext_modules():
+    ext_module_path = 'build/lib.win32-3.4/_motion_3000.pyd'
+    if os.path.exists(ext_module_path):
+        shutil.copy(ext_module_path, 'MPC2860/_motion_3000.pyd')
+
+
 MOTION_EXT = Extension(
-    name='_motion',
+    name='_motion_3000',
     sources=[
-        'src/motion.i',
+        'DMC3000/motion_3000.i',
     ],
-    library_dirs=['src'],
+    library_dirs=['DMC3000'],
     libraries=['LTDMC'],
     swig_opts=['-c++'],
     extra_compile_args=[  # The g++ (4.8) in Travis needs this
@@ -52,7 +61,7 @@ class BuildPy(build_py):
         super(build_py, self).run()
 
 
-setup(name='motion',
+setup(name='DMC3000',
       version='0.1',
       author="SF Zhou, WingC",
       author_email="1018957763@qq.com",
@@ -65,13 +74,13 @@ setup(name='motion',
           'License :: OSI Approved :: GNU Affero General Public License v3',
           'Programming Language :: Python :: 3',
       ],
-      packages=find_packages('src'),
-      package_dir={'': 'src'},
-      package_data={'src': ['*.h', '*.dll', '*.lib']},
-      ext_modules=[MOTION_EXT],
       cmdclass={
           'build_py': BuildPy,
       },
-
+      packages=find_packages(),
+      package_dir={'DMC3000': 'DMC3000'},
+      ext_modules=[MOTION_EXT],
+      package_data={'DMC3000': ['*.h', '*.dll', '*.lib', '*.pyd']},
+      include_package_data=True,
       python_requires='>=3.4',
       )

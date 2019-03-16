@@ -1,6 +1,6 @@
 %module motion
 %{
-#include "motion.h"
+#include "motion_3000.h"
 #include "LTDMC.h"
 %}
 
@@ -11,4 +11,4 @@ namespace std {
    %template(vectord) vector<double>;
 };
 
-%include "motion.h"
+%include "motion_3000.h"

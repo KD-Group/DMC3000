@@ -2,7 +2,7 @@
 #include <QDebug>
 
 #include "Windows.h"
-#include "motion.h"
+#include "motion_3000.h"
 
 class Motion {
 private:

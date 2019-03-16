@@ -6,7 +6,7 @@ TEMPLATE = app
 
 SOURCES += main.cpp
 
-HEADERS  += motion.h \
+HEADERS  += motion_3000.h \
     LTDMC.h
 
 win32: LIBS += -L$$PWD/ -lLTDMC
