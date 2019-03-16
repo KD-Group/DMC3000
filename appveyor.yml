@@ -26,12 +26,12 @@ before_test:
   - swig -version
 
 test_script:
-  - "build.cmd %PYTHON%\\python.exe setup.py test"
+  - "%PYTHON%\\python.exe setup.py test"
 
 build_script:
   - "[ -e dist ] && rm dist -rf || true"
   - swig -python -c++ src/motion.i
-  - "build.cmd %PYTHON%\\python.exe setup.py bdist_wheel"
+  - "%PYTHON%\\python.exe setup.py bdist_wheel"
 
 artifacts:
   # bdist_wheel puts your built wheel in the dist directory
