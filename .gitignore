@@ -27,6 +27,7 @@ motion.py
 *.dylib
 *.dll
 !DMC3000/LTDMC.dll
+!DMC3000/PVT.dll
 
 # Fortran module files
 *.mod
