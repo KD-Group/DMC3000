@@ -1,0 +1,47 @@
+environment:
+  matrix:
+
+    # For Python versions available on Appveyor, see
+    # https://www.appveyor.com/docs/windows-images-software/#python
+    # The list here is complete (excluding Python 2.6, which
+    # isn't covered by this document) at the time of writing.
+
+    - PYTHON: "C:\\Python33-x64"
+      DISTUTILS_USE_SDK: "1"
+    - PYTHON: "C:\\Python34-x64"
+      DISTUTILS_USE_SDK: "1"
+    - PYTHON: "C:\\Python35-x64"
+    - PYTHON: "C:\\Python36-x64"
+
+  PYPIPASSWORD:
+  secure: PIkaT8nR3rGAsDFAuwFA4A==
+
+install:
+  - SET "PYTHONHOME=%PYTHON%"
+  - SET "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - "%PYTHON%\\python.exe -m pip install - U pip wheel setuptools twine"
+  - pip install -r requirements.txt
+  - cinst swig
+
+before_test:
+  - python --version
+  - swig -version
+
+test_script:
+  - %PYTHON%\\python.exe setup.py test
+  - "build.cmd %PYTHON%\\python.exe setup.py test"
+
+build_script:
+  - "[ -e dist ] && rm dist -rf || true"
+  - swig -python -c++ src/motion.i
+  - "build.cmd %PYTHON%\\python.exe setup.py bdist_wheel"
+
+artifacts:
+  # bdist_wheel puts your built wheel in the dist directory
+  - path: dist\*
+
+deploy_script:
+  - "echo [pypi] > %USERPROFILE%\\.pypirc"
+  - "echo username: WingC >> %USERPROFILE%\\.pypirc"
+  - "echo password: %PYPIPASSWORD% >> %USERPROFILE%\\.pypirc"
+  - if "%APPVEYOR_REPO_TAG%"=="true" ( twine upload dist/* ) else ( echo "Not deploying because not a tagged commit." )
