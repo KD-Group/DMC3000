@@ -28,7 +28,6 @@ before_test:
   - swig -version
 
 test_script:
-  - %PYTHON%\\python.exe setup.py test
   - "build.cmd %PYTHON%\\python.exe setup.py test"
 
 build_script:
