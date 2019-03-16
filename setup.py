@@ -35,7 +35,7 @@ MOTION_EXT = Extension(
     sources=[
         'src/motion.i',
     ],
-    library_dirs=['./src'],
+    library_dirs=['src'],
     libraries=['LTDMC'],
     include_dirs=[
         'src',
@@ -70,6 +70,7 @@ setup(name='motion',
       ],
       packages=find_packages('src'),
       package_dir={'': 'src'},
+      package_data={'src': ['*.h', '*.dll', '*.lib']},
       ext_modules=[MOTION_EXT],
       cmdclass={
           'build_py': BuildPy,
