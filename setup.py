@@ -7,7 +7,8 @@ setup.py file for motion module
 # from setuptools import find_packages
 # from distutils.core import setup, Extension
 #
-# motion_module = Extension('_motion', sources=['./DMC3000/motion_wrap.cxx'], library_dirs=['./DMC3000'], libraries=['LTDMC'])
+# motion_module = Extension('_motion', sources=['DMC3000/motion_3000_wrap.cxx'],
+#                           library_dirs=['DMC3000'], libraries=['LTDMC'])
 #
 # setup(name='motion',
 #       version='0.1',
@@ -34,9 +35,9 @@ from setuptools.command.build_py import build_py
 
 
 def copy_ext_modules():
-    ext_module_path = 'build/lib.win32-3.4/_motion_3000.pyd'
+    ext_module_path = 'build/lib.win-amd64-3.4/_motion_3000.pyd'
     if os.path.exists(ext_module_path):
-        shutil.copy(ext_module_path, 'MPC2860/_motion_3000.pyd')
+        shutil.copy(ext_module_path, 'DMC3000/_motion_3000.pyd')
 
 
 MOTION_EXT = Extension(
@@ -47,9 +48,6 @@ MOTION_EXT = Extension(
     library_dirs=['DMC3000'],
     libraries=['LTDMC'],
     swig_opts=['-c++'],
-    extra_compile_args=[  # The g++ (4.8) in Travis needs this
-        '-std=c++11',
-    ]
 )
 
 
@@ -60,6 +58,8 @@ class BuildPy(build_py):
         self.run_command('build_ext')
         super(build_py, self).run()
 
+
+copy_ext_modules()
 
 setup(name='DMC3000',
       version='0.1',

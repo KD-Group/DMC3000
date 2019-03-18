@@ -1,4 +1,4 @@
-%module motion
+%module motion_3000
 %{
 #include "motion_3000.h"
 #include "LTDMC.h"
