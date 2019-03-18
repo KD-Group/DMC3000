@@ -1,4 +1,4 @@
-ï»¿#ifndef _DMC_LIB_H
+#ifndef _DMC_LIB_H
 #define _DMC_LIB_H
 
 #ifndef TRUE
@@ -25,7 +25,7 @@ typedef float               FLOAT;
 
 #define __DMC_EXPORTS
 
-//å®šä¹‰è¾“å…¥å’Œè¾“å‡º
+//¶¨ÒåÊäÈëºÍÊä³ö
 #ifdef __DMC_EXPORTS
 	#define DMC_API __declspec(dllexport)
 #else
@@ -36,331 +36,331 @@ typedef float               FLOAT;
 extern "C" {
 #endif
 
-//æ¿å¡é…ç½®	
-DMC_API short __stdcall dmc_board_init(void); 	//åˆå§‹åŒ–æ§åˆ¶å¡
-DMC_API short __stdcall dmc_board_close(void);	//å…³é—­æ§åˆ¶å¡
-DMC_API short __stdcall dmc_board_reset(void); //ç¡¬ä»¶å¤ä½
-DMC_API short __stdcall	dmc_get_CardInfList(WORD* CardNun,DWORD* CardTypeList,WORD* CardIdList);//è¯»å–åˆå§‹åŒ–å®Œæˆåçš„å¡ä¿¡æ¯åˆ—è¡¨
-DMC_API short __stdcall dmc_get_CardNo_version(WORD CardNo,DWORD *CardVersion);	//è¯»å–æ§åˆ¶å¡ç¡¬ä»¶ç‰ˆæœ¬
-DMC_API short __stdcall dmc_get_CardNo_soft_version(WORD CardNo,DWORD *FirmID,DWORD *SubFirmID);	//è¯»å–æ§åˆ¶å¡ç¡¬ä»¶çš„å›ºä»¶ç‰ˆæœ¬
-DMC_API short __stdcall dmc_get_CardNo_lib_version(DWORD *LibVer);	//è¯»å–æ§åˆ¶å¡åŠ¨æ€åº“ç‰ˆæœ¬
-DMC_API short __stdcall dmc_get_total_axes(WORD CardNo,DWORD *TotalAxis); 	//è¯»å–æŒ‡å®šå¡è½´æ•°
-//å‡½æ•°åº“æ‰“å°è¾“å‡ºåŠŸèƒ½ modeï¼š0-ä¸è¾“å‡ºï¼Œ1-è¾“å‡º
+//°å¿¨ÅäÖÃ	
+DMC_API short __stdcall dmc_board_init(void); 	//³õÊ¼»¯¿ØÖÆ¿¨
+DMC_API short __stdcall dmc_board_close(void);	//¹Ø±Õ¿ØÖÆ¿¨
+DMC_API short __stdcall dmc_board_reset(void); //Ó²¼ş¸´Î»
+DMC_API short __stdcall	dmc_get_CardInfList(WORD* CardNun,DWORD* CardTypeList,WORD* CardIdList);//¶ÁÈ¡³õÊ¼»¯Íê³ÉºóµÄ¿¨ĞÅÏ¢ÁĞ±í
+DMC_API short __stdcall dmc_get_CardNo_version(WORD CardNo,DWORD *CardVersion);	//¶ÁÈ¡¿ØÖÆ¿¨Ó²¼ş°æ±¾
+DMC_API short __stdcall dmc_get_CardNo_soft_version(WORD CardNo,DWORD *FirmID,DWORD *SubFirmID);	//¶ÁÈ¡¿ØÖÆ¿¨Ó²¼şµÄ¹Ì¼ş°æ±¾
+DMC_API short __stdcall dmc_get_CardNo_lib_version(DWORD *LibVer);	//¶ÁÈ¡¿ØÖÆ¿¨¶¯Ì¬¿â°æ±¾
+DMC_API short __stdcall dmc_get_total_axes(WORD CardNo,DWORD *TotalAxis); 	//¶ÁÈ¡Ö¸¶¨¿¨ÖáÊı
+//º¯Êı¿â´òÓ¡Êä³ö¹¦ÄÜ mode£º0-²»Êä³ö£¬1-Êä³ö
 DMC_API short __stdcall dmc_set_debug_mode(WORD mode,const char *FileName);
 DMC_API short __stdcall dmc_get_debug_mode(WORD* mode,char *FileName);
-//3800ä¸“ç”¨ è½´IOæ˜ å°„é…ç½®
+//3800×¨ÓÃ ÖáIOÓ³ÉäÅäÖÃ
 DMC_API short __stdcall dmc_set_AxisIoMap(WORD CardNo,WORD Axis,WORD MsgType,WORD MapPortType,WORD MapPortIndex,DWORD Filter); 
 DMC_API short __stdcall dmc_get_AxisIoMap(WORD CardNo,WORD Axis,WORD MsgType,WORD* MapPortType,WORD* MapPortIndex,DWORD* Filter); 
-//ä»¥ä¸Šå‡½æ•°ä»¥æ¯«ç§’ä¸ºå•ä½å¯ç»§ç»­ä½¿ç”¨ï¼Œæ–°å‡½æ•°å°†æ—¶é—´ç»Ÿä¸€åˆ°ç§’ä¸ºå•ä½
+//ÒÔÉÏº¯ÊıÒÔºÁÃëÎªµ¥Î»¿É¼ÌĞøÊ¹ÓÃ£¬ĞÂº¯Êı½«Ê±¼äÍ³Ò»µ½ÃëÎªµ¥Î»
 DMC_API short __stdcall dmc_set_axis_io_map(WORD CardNo,WORD Axis,WORD IoType,WORD MapIoType,WORD MapIoIndex,double filter_time);
 DMC_API short __stdcall dmc_get_axis_io_map(WORD CardNo,WORD Axis,WORD IoType,WORD* MapIoType,WORD* MapIoIndex,double* filter_time);
-DMC_API short __stdcall dmc_set_special_input_filter(WORD CardNo,double filter_time);//è®¾ç½®æ‰€æœ‰ä¸“ç”¨IOæ»¤æ³¢æ—¶é—´
+DMC_API short __stdcall dmc_set_special_input_filter(WORD CardNo,double filter_time);//ÉèÖÃËùÓĞ×¨ÓÃIOÂË²¨Ê±¼ä
 
-//ä¸‹è½½å‚æ•°æ–‡ä»¶
+//ÏÂÔØ²ÎÊıÎÄ¼ş
 DMC_API short __stdcall dmc_download_configfile(WORD CardNo,const char *FileName);
-//ä¸‹è½½å›ºä»¶æ–‡ä»¶
+//ÏÂÔØ¹Ì¼şÎÄ¼ş
 DMC_API short __stdcall dmc_download_firmware(WORD CardNo,const char *FileName);
-//é™ä½/å¼‚å¸¸é…ç½®
-DMC_API short __stdcall dmc_set_softlimit(WORD CardNo,WORD axis,WORD enable, WORD source_sel,WORD SL_action, long N_limit,long P_limit);	//è®¾ç½®è½¯é™ä½å‚æ•°
-DMC_API short __stdcall dmc_get_softlimit(WORD CardNo,WORD axis,WORD *enable, WORD *source_sel,WORD *SL_action,long *N_limit,long *P_limit);	//è¯»å–è½¯é™ä½å‚æ•°
-DMC_API short __stdcall dmc_set_el_mode(WORD CardNo,WORD axis,WORD el_enable,WORD el_logic,WORD el_mode); 	//è®¾ç½®ELä¿¡å·
-DMC_API short __stdcall dmc_get_el_mode(WORD CardNo,WORD axis,WORD *el_enable,WORD *el_logic,WORD *el_mode); 	//è¯»å–è®¾ç½®ELä¿¡å·
-DMC_API short __stdcall dmc_set_emg_mode(WORD CardNo,WORD axis,WORD enable,WORD emg_logic); 	//è®¾ç½®EMGä¿¡å·
-DMC_API short __stdcall dmc_get_emg_mode(WORD CardNo,WORD axis,WORD *enable,WORD *emg_logic); 	//è¯»å–è®¾ç½®EMGä¿¡å·
+//ÏŞÎ»/Òì³£ÅäÖÃ
+DMC_API short __stdcall dmc_set_softlimit(WORD CardNo,WORD axis,WORD enable, WORD source_sel,WORD SL_action, long N_limit,long P_limit);	//ÉèÖÃÈíÏŞÎ»²ÎÊı
+DMC_API short __stdcall dmc_get_softlimit(WORD CardNo,WORD axis,WORD *enable, WORD *source_sel,WORD *SL_action,long *N_limit,long *P_limit);	//¶ÁÈ¡ÈíÏŞÎ»²ÎÊı
+DMC_API short __stdcall dmc_set_el_mode(WORD CardNo,WORD axis,WORD el_enable,WORD el_logic,WORD el_mode); 	//ÉèÖÃELĞÅºÅ
+DMC_API short __stdcall dmc_get_el_mode(WORD CardNo,WORD axis,WORD *el_enable,WORD *el_logic,WORD *el_mode); 	//¶ÁÈ¡ÉèÖÃELĞÅºÅ
+DMC_API short __stdcall dmc_set_emg_mode(WORD CardNo,WORD axis,WORD enable,WORD emg_logic); 	//ÉèÖÃEMGĞÅºÅ
+DMC_API short __stdcall dmc_get_emg_mode(WORD CardNo,WORD axis,WORD *enable,WORD *emg_logic); 	//¶ÁÈ¡ÉèÖÃEMGĞÅºÅ
 
-//3800ä¸“ç”¨ å¤–éƒ¨å‡é€Ÿåœæ­¢ä¿¡å·åŠå‡é€Ÿåœæ­¢æ—¶é—´è®¾ç½®
+//3800×¨ÓÃ Íâ²¿¼õËÙÍ£Ö¹ĞÅºÅ¼°¼õËÙÍ£Ö¹Ê±¼äÉèÖÃ
 DMC_API short __stdcall dmc_set_dstp_mode(WORD CardNo,WORD axis,WORD enable,WORD logic,DWORD time); 	
 DMC_API short __stdcall dmc_get_dstp_mode(WORD CardNo,WORD axis,WORD *enable,WORD *logic,DWORD *time); 	
 DMC_API short __stdcall dmc_set_dstp_time(WORD CardNo,WORD axis,DWORD time);
 DMC_API short __stdcall dmc_get_dstp_time(WORD CardNo,WORD axis,DWORD *time);
-//ä»¥ä¸Šå‡½æ•°ä»¥æ¯«ç§’ä¸ºå•ä½å¯ç»§ç»­ä½¿ç”¨ï¼Œæ–°å‡½æ•°å°†æ—¶é—´ç»Ÿä¸€åˆ°ç§’ä¸ºå•ä½
-DMC_API short __stdcall dmc_set_io_dstp_mode(WORD CardNo,WORD axis,WORD enable,WORD logic); //è®¾ç½®å¤–éƒ¨IOè§¦å‘å‡é€Ÿåœæ­¢æ¨¡å¼
+//ÒÔÉÏº¯ÊıÒÔºÁÃëÎªµ¥Î»¿É¼ÌĞøÊ¹ÓÃ£¬ĞÂº¯Êı½«Ê±¼äÍ³Ò»µ½ÃëÎªµ¥Î»
+DMC_API short __stdcall dmc_set_io_dstp_mode(WORD CardNo,WORD axis,WORD enable,WORD logic); //ÉèÖÃÍâ²¿IO´¥·¢¼õËÙÍ£Ö¹Ä£Ê½
 DMC_API short __stdcall dmc_get_io_dstp_mode(WORD CardNo,WORD axis,WORD *enable,WORD *logic); 	
-DMC_API short __stdcall dmc_set_dec_stop_time(WORD CardNo,WORD axis,double  stop_time);//è®¾ç½®å…¨å±€å‡é€Ÿåœæ­¢æ—¶é—´
+DMC_API short __stdcall dmc_set_dec_stop_time(WORD CardNo,WORD axis,double  stop_time);//ÉèÖÃÈ«¾Ö¼õËÙÍ£Ö¹Ê±¼ä
 DMC_API short __stdcall dmc_get_dec_stop_time(WORD CardNo,WORD axis,double * stop_time);
 
-//é€Ÿåº¦è®¾ç½®		
-DMC_API short __stdcall dmc_set_profile(WORD CardNo,WORD axis,double Min_Vel,double Max_Vel,double Tacc,double Tdec,double stop_vel);	//è®¾å®šé€Ÿåº¦æ›²çº¿å‚æ•°
-DMC_API short __stdcall dmc_get_profile(WORD CardNo,WORD axis,double *Min_Vel,double *Max_Vel,double *Tacc,double *Tdec,double *stop_vel);	//è¯»å–é€Ÿåº¦æ›²çº¿å‚æ•°
-DMC_API short __stdcall dmc_set_s_profile(WORD CardNo,WORD axis,WORD s_mode,double s_para);	//è®¾ç½®å¹³æ»‘é€Ÿåº¦æ›²çº¿å‚æ•°
-DMC_API short __stdcall dmc_get_s_profile(WORD CardNo,WORD axis,WORD s_mode,double *s_para);	//è¯»å–å¹³æ»‘é€Ÿåº¦æ›²çº¿å‚æ•°
+//ËÙ¶ÈÉèÖÃ		
+DMC_API short __stdcall dmc_set_profile(WORD CardNo,WORD axis,double Min_Vel,double Max_Vel,double Tacc,double Tdec,double stop_vel);	//Éè¶¨ËÙ¶ÈÇúÏß²ÎÊı
+DMC_API short __stdcall dmc_get_profile(WORD CardNo,WORD axis,double *Min_Vel,double *Max_Vel,double *Tacc,double *Tdec,double *stop_vel);	//¶ÁÈ¡ËÙ¶ÈÇúÏß²ÎÊı
+DMC_API short __stdcall dmc_set_s_profile(WORD CardNo,WORD axis,WORD s_mode,double s_para);	//ÉèÖÃÆ½»¬ËÙ¶ÈÇúÏß²ÎÊı
+DMC_API short __stdcall dmc_get_s_profile(WORD CardNo,WORD axis,WORD s_mode,double *s_para);	//¶ÁÈ¡Æ½»¬ËÙ¶ÈÇúÏß²ÎÊı
 DMC_API short __stdcall dmc_set_vector_profile_multicoor(WORD CardNo,WORD Crd, double Min_Vel,double Max_Vel,double Tacc,double Tdec=0,double Stop_Vel=0);
 DMC_API short __stdcall dmc_get_vector_profile_multicoor(WORD CardNo,WORD Crd, double *Min_Vel,double *Max_Vel,double *Tacc,double *Tdec=NULL,double *Stop_Vel=NULL);
 
-//è¿åŠ¨æ¨¡å—è„‰å†²æ¨¡å¼		
-DMC_API short __stdcall dmc_set_pulse_outmode(WORD CardNo,WORD axis,WORD outmode);	//è®¾å®šè„‰å†²è¾“å‡ºæ¨¡å¼
-DMC_API short __stdcall dmc_get_pulse_outmode(WORD CardNo,WORD axis,WORD* outmode);	//è¯»å–è„‰å†²è¾“å‡ºæ¨¡å¼
+//ÔË¶¯Ä£¿éÂö³åÄ£Ê½		
+DMC_API short __stdcall dmc_set_pulse_outmode(WORD CardNo,WORD axis,WORD outmode);	//Éè¶¨Âö³åÊä³öÄ£Ê½
+DMC_API short __stdcall dmc_get_pulse_outmode(WORD CardNo,WORD axis,WORD* outmode);	//¶ÁÈ¡Âö³åÊä³öÄ£Ê½
 
-//å•è½´è¿åŠ¨		
-DMC_API short __stdcall dmc_pmove(WORD CardNo,WORD axis,long dist,WORD posi_mode);	//æŒ‡å®šè½´åšå®šé•¿ä½ç§»è¿åŠ¨
-DMC_API short __stdcall dmc_vmove(WORD CardNo,WORD axis,WORD dir);	//æŒ‡å®šè½´åšè¿ç»­è¿åŠ¨
+//µ¥ÖáÔË¶¯		
+DMC_API short __stdcall dmc_pmove(WORD CardNo,WORD axis,long dist,WORD posi_mode);	//Ö¸¶¨Öá×ö¶¨³¤Î»ÒÆÔË¶¯
+DMC_API short __stdcall dmc_vmove(WORD CardNo,WORD axis,WORD dir);	//Ö¸¶¨Öá×öÁ¬ĞøÔË¶¯
 
-//PVTè¿åŠ¨
+//PVTÔË¶¯
 DMC_API short __stdcall dmc_PvtTable(WORD CardNo,WORD iaxis,DWORD count,double *pTime,long *pPos,double *pVel);
 DMC_API short __stdcall dmc_PtsTable(WORD CardNo,WORD iaxis,DWORD count,double *pTime,long *pPos,double *pPercent);
 DMC_API short __stdcall dmc_PvtsTable(WORD CardNo,WORD iaxis,DWORD count,double *pTime,long *pPos,double velBegin,double velEnd);
 DMC_API short __stdcall dmc_PttTable(WORD CardNo,WORD iaxis,DWORD count,double *pTime,long *pPos);
 DMC_API short __stdcall dmc_PvtMove(WORD CardNo,WORD AxisNum,WORD* AxisList);
 
-//åœ¨çº¿å˜ä½/å˜é€Ÿ
-DMC_API short __stdcall dmc_reset_target_position(WORD CardNo,WORD axis,long dist,WORD posi_mode=0);	//è¿åŠ¨ä¸­æ”¹å˜ç›®æ ‡ä½ç½®
-DMC_API short __stdcall dmc_change_speed(WORD CardNo,WORD axis,double Curr_Vel,double Taccdec);	//åœ¨çº¿æ”¹å˜æŒ‡å®šè½´çš„å½“å‰è¿åŠ¨é€Ÿåº¦åŠåŠ å‡é€Ÿæ—¶é—´
-DMC_API short __stdcall dmc_update_target_position(WORD CardNo,WORD axis,long dist,WORD posi_mode=0);	//å¼ºè¡Œæ”¹å˜ç›®æ ‡ä½ç½®
+//ÔÚÏß±äÎ»/±äËÙ
+DMC_API short __stdcall dmc_reset_target_position(WORD CardNo,WORD axis,long dist,WORD posi_mode=0);	//ÔË¶¯ÖĞ¸Ä±äÄ¿±êÎ»ÖÃ
+DMC_API short __stdcall dmc_change_speed(WORD CardNo,WORD axis,double Curr_Vel,double Taccdec);	//ÔÚÏß¸Ä±äÖ¸¶¨ÖáµÄµ±Ç°ÔË¶¯ËÙ¶È¼°¼Ó¼õËÙÊ±¼ä
+DMC_API short __stdcall dmc_update_target_position(WORD CardNo,WORD axis,long dist,WORD posi_mode=0);	//Ç¿ĞĞ¸Ä±äÄ¿±êÎ»ÖÃ
 
-//ç›´çº¿æ’è¡¥		
-DMC_API short __stdcall dmc_line_multicoor(WORD CardNo,WORD Crd,WORD axisNum,WORD *axisList,long *DistList,WORD posi_mode);	//æŒ‡å®šè½´ç›´çº¿æ’è¡¥è¿åŠ¨
+//Ö±Ïß²å²¹		
+DMC_API short __stdcall dmc_line_multicoor(WORD CardNo,WORD Crd,WORD axisNum,WORD *axisList,long *DistList,WORD posi_mode);	//Ö¸¶¨ÖáÖ±Ïß²å²¹ÔË¶¯
 DMC_API short __stdcall dmc_arc_move_multicoor(WORD CardNo,WORD Crd,WORD *AxisList,long *Target_Pos,long *Cen_Pos,WORD Arc_Dir,WORD posi_mode);
 
-//å›é›¶è¿åŠ¨	
-DMC_API short __stdcall dmc_set_home_pin_logic(WORD CardNo,WORD axis,WORD org_logic,double filter=0); 	//è®¾ç½®HOMEä¿¡å·
-DMC_API short __stdcall dmc_get_home_pin_logic(WORD CardNo,WORD axis,WORD *org_logic,double *filter=NULL); 	//è¯»å–è®¾ç½®HOMEä¿¡å·	
-DMC_API short __stdcall dmc_set_homemode(WORD CardNo,WORD axis,WORD home_dir,double vel_mode,WORD mode,WORD EZ_count=0);//è®¾å®šæŒ‡å®šè½´çš„å›åŸç‚¹æ¨¡å¼
-DMC_API short __stdcall dmc_get_homemode(WORD CardNo,WORD axis,WORD *home_dir, double *vel_mode,WORD *home_mode,WORD *EZ_count=NULL);//è¯»å–æŒ‡å®šè½´çš„å›åŸç‚¹æ¨¡å¼
+//»ØÁãÔË¶¯	
+DMC_API short __stdcall dmc_set_home_pin_logic(WORD CardNo,WORD axis,WORD org_logic,double filter=0); 	//ÉèÖÃHOMEĞÅºÅ
+DMC_API short __stdcall dmc_get_home_pin_logic(WORD CardNo,WORD axis,WORD *org_logic,double *filter=NULL); 	//¶ÁÈ¡ÉèÖÃHOMEĞÅºÅ	
+DMC_API short __stdcall dmc_set_homemode(WORD CardNo,WORD axis,WORD home_dir,double vel_mode,WORD mode,WORD EZ_count=0);//Éè¶¨Ö¸¶¨ÖáµÄ»ØÔ­µãÄ£Ê½
+DMC_API short __stdcall dmc_get_homemode(WORD CardNo,WORD axis,WORD *home_dir, double *vel_mode,WORD *home_mode,WORD *EZ_count=NULL);//¶ÁÈ¡Ö¸¶¨ÖáµÄ»ØÔ­µãÄ£Ê½
 DMC_API short __stdcall dmc_home_move(WORD CardNo,WORD axis);	
-//3410ä¸“ç”¨ å›åŸç‚¹å‡é€Ÿä¿¡å·é…ç½®
-//DMC_API short __stdcall dmc_set_sd_mode(WORD CardNo,WORD axis,WORD enable,WORD sd_logic,WORD sd_mode); 	//è®¾ç½®SDä¿¡å·
-//DMC_API short __stdcall dmc_get_sd_mode(WORD CardNo,WORD axis,WORD* enable,WORD *sd_logic,WORD *sd_mode); 	//è¯»å–è®¾ç½®SDä¿¡å·
-//3800ä¸“ç”¨ åŸç‚¹é”å­˜
-DMC_API short __stdcall dmc_set_homelatch_mode(WORD CardNo,WORD axis,WORD enable,WORD logic,WORD source);//è®¾ç½®åŸç‚¹é”å­˜æ¨¡å¼
+//3410×¨ÓÃ »ØÔ­µã¼õËÙĞÅºÅÅäÖÃ
+//DMC_API short __stdcall dmc_set_sd_mode(WORD CardNo,WORD axis,WORD enable,WORD sd_logic,WORD sd_mode); 	//ÉèÖÃSDĞÅºÅ
+//DMC_API short __stdcall dmc_get_sd_mode(WORD CardNo,WORD axis,WORD* enable,WORD *sd_logic,WORD *sd_mode); 	//¶ÁÈ¡ÉèÖÃSDĞÅºÅ
+//3800×¨ÓÃ Ô­µãËø´æ
+DMC_API short __stdcall dmc_set_homelatch_mode(WORD CardNo,WORD axis,WORD enable,WORD logic,WORD source);//ÉèÖÃÔ­µãËø´æÄ£Ê½
 DMC_API short __stdcall dmc_get_homelatch_mode(WORD CardNo,WORD axis,WORD* enable,WORD* logic,WORD* source);
-DMC_API long __stdcall dmc_get_homelatch_flag(WORD CardNo,WORD axis);//è¯»å–é”å­˜æ ‡å¿—
-DMC_API short __stdcall dmc_reset_homelatch_flag(WORD CardNo,WORD axis);//å¤ä½åŸç‚¹é”å­˜æ ‡å¿—
-DMC_API long __stdcall dmc_get_homelatch_value(WORD CardNo,WORD axis);//è¯»å–é”å­˜å€¼
+DMC_API long __stdcall dmc_get_homelatch_flag(WORD CardNo,WORD axis);//¶ÁÈ¡Ëø´æ±êÖ¾
+DMC_API short __stdcall dmc_reset_homelatch_flag(WORD CardNo,WORD axis);//¸´Î»Ô­µãËø´æ±êÖ¾
+DMC_API long __stdcall dmc_get_homelatch_value(WORD CardNo,WORD axis);//¶ÁÈ¡Ëø´æÖµ
 
-//æ‰‹è½®è¿åŠ¨	
-//3800ä¸“ç”¨ æ‰‹è½®é€šé“é€‰æ‹©	
+//ÊÖÂÖÔË¶¯	
+//3800×¨ÓÃ ÊÖÂÖÍ¨µÀÑ¡Ôñ	
 DMC_API short __stdcall dmc_set_handwheel_channel(WORD CardNo,WORD index);
 DMC_API short __stdcall dmc_get_handwheel_channel(WORD CardNo,WORD* index);
-//ä¸€ä¸ªæ‰‹è½®ä¿¡å·æ§åˆ¶å•ä¸ªè½´è¿åŠ¨
-DMC_API short __stdcall dmc_set_handwheel_inmode(WORD CardNo,WORD axis,WORD inmode,long multi,double vh=0);	//è®¾ç½®è¾“å…¥æ‰‹è½®è„‰å†²ä¿¡å·çš„å·¥ä½œæ–¹å¼ æ§åˆ¶å•è½´
-DMC_API short __stdcall dmc_get_handwheel_inmode(WORD CardNo,WORD axis,WORD *inmode,long *multi,double *vh=NULL);	//è¯»å–è¾“å…¥æ‰‹è½®è„‰å†²ä¿¡å·çš„å·¥ä½œæ–¹å¼ æ§åˆ¶å•è½´
-//ä¸€ä¸ªæ‰‹è½®ä¿¡å·æ§åˆ¶å¤šä¸ªè½´è¿åŠ¨
-DMC_API short __stdcall dmc_set_handwheel_inmode_extern(WORD CardNo,WORD inmode,WORD AxisNum,WORD* AxisList,long* multi);	//è®¾ç½®è¾“å…¥æ‰‹è½®è„‰å†²ä¿¡å·çš„å·¥ä½œæ–¹å¼ æ§åˆ¶å¤šè½´
+//Ò»¸öÊÖÂÖĞÅºÅ¿ØÖÆµ¥¸öÖáÔË¶¯
+DMC_API short __stdcall dmc_set_handwheel_inmode(WORD CardNo,WORD axis,WORD inmode,long multi,double vh=0);	//ÉèÖÃÊäÈëÊÖÂÖÂö³åĞÅºÅµÄ¹¤×÷·½Ê½ ¿ØÖÆµ¥Öá
+DMC_API short __stdcall dmc_get_handwheel_inmode(WORD CardNo,WORD axis,WORD *inmode,long *multi,double *vh=NULL);	//¶ÁÈ¡ÊäÈëÊÖÂÖÂö³åĞÅºÅµÄ¹¤×÷·½Ê½ ¿ØÖÆµ¥Öá
+//Ò»¸öÊÖÂÖĞÅºÅ¿ØÖÆ¶à¸öÖáÔË¶¯
+DMC_API short __stdcall dmc_set_handwheel_inmode_extern(WORD CardNo,WORD inmode,WORD AxisNum,WORD* AxisList,long* multi);	//ÉèÖÃÊäÈëÊÖÂÖÂö³åĞÅºÅµÄ¹¤×÷·½Ê½ ¿ØÖÆ¶àÖá
 DMC_API short __stdcall dmc_get_handwheel_inmode_extern(WORD CardNo,WORD* inmode,WORD* AxisNum,WORD* AxisList,long *multi);	
-//å¯åŠ¨æŒ‡å®šè½´çš„æ‰‹è½®è„‰å†²è¿åŠ¨
+//Æô¶¯Ö¸¶¨ÖáµÄÊÖÂÖÂö³åÔË¶¯
 DMC_API short __stdcall dmc_handwheel_move(WORD CardNo,WORD axis);	
 
-//ç¼–ç å™¨		
-DMC_API short __stdcall dmc_set_counter_inmode(WORD CardNo,WORD axis,WORD mode);	//è®¾å®šç¼–ç å™¨çš„è®¡æ•°æ–¹å¼
-DMC_API short __stdcall dmc_get_counter_inmode(WORD CardNo,WORD axis,WORD *mode);	//è¯»å–ç¼–ç å™¨çš„è®¡æ•°æ–¹å¼
+//±àÂëÆ÷		
+DMC_API short __stdcall dmc_set_counter_inmode(WORD CardNo,WORD axis,WORD mode);	//Éè¶¨±àÂëÆ÷µÄ¼ÆÊı·½Ê½
+DMC_API short __stdcall dmc_get_counter_inmode(WORD CardNo,WORD axis,WORD *mode);	//¶ÁÈ¡±àÂëÆ÷µÄ¼ÆÊı·½Ê½
 DMC_API long __stdcall dmc_get_encoder(WORD CardNo,WORD axis);	
 DMC_API short __stdcall dmc_set_encoder(WORD CardNo,WORD axis,long encoder_value);
-DMC_API short __stdcall dmc_set_ez_mode(WORD CardNo,WORD axis,WORD ez_logic,WORD ez_mode=0,double filter=0);	//è®¾ç½®EZä¿¡å·
-DMC_API short __stdcall dmc_get_ez_mode(WORD CardNo,WORD axis,WORD *ez_logic,WORD *ez_mode=NULL,double *filter=NULL);	//è¯»å–è®¾ç½®EZä¿¡å·
+DMC_API short __stdcall dmc_set_ez_mode(WORD CardNo,WORD axis,WORD ez_logic,WORD ez_mode=0,double filter=0);	//ÉèÖÃEZĞÅºÅ
+DMC_API short __stdcall dmc_get_ez_mode(WORD CardNo,WORD axis,WORD *ez_logic,WORD *ez_mode=NULL,double *filter=NULL);	//¶ÁÈ¡ÉèÖÃEZĞÅºÅ
 
-//é«˜é€Ÿé”å­˜
-DMC_API short __stdcall dmc_set_ltc_mode(WORD CardNo,WORD axis,WORD ltc_logic,WORD ltc_mode=0,double filter=0); 	//è®¾ç½®LTCä¿¡å·
-DMC_API short __stdcall dmc_get_ltc_mode(WORD CardNo,WORD axis,WORD*ltc_logic,WORD*ltc_mode=NULL,double *filter=NULL);	//è¯»å–è®¾ç½®LTCä¿¡å·
-DMC_API short __stdcall dmc_set_latch_mode(WORD CardNo,WORD axis,WORD all_enable,WORD latch_sourcee,WORD latch_channel=0); 	//è®¾ç½®é”å­˜æ–¹å¼
+//¸ßËÙËø´æ
+DMC_API short __stdcall dmc_set_ltc_mode(WORD CardNo,WORD axis,WORD ltc_logic,WORD ltc_mode=0,double filter=0); 	//ÉèÖÃLTCĞÅºÅ
+DMC_API short __stdcall dmc_get_ltc_mode(WORD CardNo,WORD axis,WORD*ltc_logic,WORD*ltc_mode=NULL,double *filter=NULL);	//¶ÁÈ¡ÉèÖÃLTCĞÅºÅ
+DMC_API short __stdcall dmc_set_latch_mode(WORD CardNo,WORD axis,WORD all_enable,WORD latch_sourcee,WORD latch_channel=0); 	//ÉèÖÃËø´æ·½Ê½
 DMC_API short __stdcall dmc_get_latch_mode(WORD CardNo,WORD axis,WORD *all_enable,WORD* latch_sourcee,WORD *latch_channel=NULL); 
-DMC_API short __stdcall dmc_reset_latch_flag(WORD CardNo,WORD axis); 	//å¤ä½é”å­˜å™¨æ ‡å¿—
-DMC_API short __stdcall dmc_get_latch_flag(WORD CardNo,WORD axis); 	//è¯»å–æ§åˆ¶å¡å†…æœ‰æ•ˆé”å­˜ä¸ªæ•°
-DMC_API long __stdcall dmc_get_latch_value(WORD CardNo,WORD axis); 	//è¯»å–æ§åˆ¶å¡å†…é”å­˜å€¼ï¼Œå†è¿ç»­é”å­˜æ¨¡å¼ä¸‹è¯»å–ä¸€æ¬¡æ§åˆ¶å¡å†…æœ‰æ•ˆé”å­˜ä¸ªæ•°å°†ä¼šè‡ªåŠ¨å‡1,å¹¶å°†é”å­˜å€¼ä¿å­˜åœ¨PCç¼“å†²åŒºå†…
-DMC_API short __stdcall dmc_get_latch_flag_extern(WORD CardNo,WORD axis); 	//è¯»å–é”å­˜å™¨å·²é”å­˜ä¸ªæ•°
-DMC_API long __stdcall dmc_get_latch_value_extern(WORD CardNo,WORD axis,WORD index); 	//æŒ‰ç´¢å¼•å·è¯»å–PCç¼“å†²åŒºä¸­å·²ä¿å­˜çš„é”å­˜å€¼ï¼Œè¯»çš„æ—¶å€™ä¼šå°†æ§åˆ¶å¡å†…çš„æœ‰æ•ˆé”å­˜å€¼å…¨éƒ¨ä¿å­˜åœ¨PCç¼“å†²åŒºä¸­
-//LTCç«¯å£è§¦å‘å»¶æ—¶æ€¥åœæ—¶é—´ å•ä½ï¼šå¾®ç§’
+DMC_API short __stdcall dmc_reset_latch_flag(WORD CardNo,WORD axis); 	//¸´Î»Ëø´æÆ÷±êÖ¾
+DMC_API short __stdcall dmc_get_latch_flag(WORD CardNo,WORD axis); 	//¶ÁÈ¡¿ØÖÆ¿¨ÄÚÓĞĞ§Ëø´æ¸öÊı
+DMC_API long __stdcall dmc_get_latch_value(WORD CardNo,WORD axis); 	//¶ÁÈ¡¿ØÖÆ¿¨ÄÚËø´æÖµ£¬ÔÙÁ¬ĞøËø´æÄ£Ê½ÏÂ¶ÁÈ¡Ò»´Î¿ØÖÆ¿¨ÄÚÓĞĞ§Ëø´æ¸öÊı½«»á×Ô¶¯¼õ1,²¢½«Ëø´æÖµ±£´æÔÚPC»º³åÇøÄÚ
+DMC_API short __stdcall dmc_get_latch_flag_extern(WORD CardNo,WORD axis); 	//¶ÁÈ¡Ëø´æÆ÷ÒÑËø´æ¸öÊı
+DMC_API long __stdcall dmc_get_latch_value_extern(WORD CardNo,WORD axis,WORD index); 	//°´Ë÷ÒıºÅ¶ÁÈ¡PC»º³åÇøÖĞÒÑ±£´æµÄËø´æÖµ£¬¶ÁµÄÊ±ºò»á½«¿ØÖÆ¿¨ÄÚµÄÓĞĞ§Ëø´æÖµÈ«²¿±£´æÔÚPC»º³åÇøÖĞ
+//LTC¶Ë¿Ú´¥·¢ÑÓÊ±¼±Í£Ê±¼ä µ¥Î»£ºÎ¢Ãë
 DMC_API short __stdcall dmc_set_latch_stop_time(WORD CardNo,WORD axis,long stop_time); 
 DMC_API short __stdcall dmc_get_latch_stop_time(WORD CardNo,WORD axis,long* stop_time);
-//DMC3800ä¸“ç”¨ LTCåç›¸è¾“å‡º
-DMC_API short __stdcall dmc_SetLtcOutMode(WORD CardNo,WORD axis,WORD enable,WORD bitno);//è®¾ç½®LTCåå‘è¾“å‡ºæ¨¡å¼
+//DMC3800×¨ÓÃ LTC·´ÏàÊä³ö
+DMC_API short __stdcall dmc_SetLtcOutMode(WORD CardNo,WORD axis,WORD enable,WORD bitno);//ÉèÖÃLTC·´ÏòÊä³öÄ£Ê½
 DMC_API short __stdcall dmc_GetLtcOutMode(WORD CardNo,WORD axis,WORD *enable,WORD* bitno);
 
-//å•è½´ä½é€Ÿä½ç½®æ¯”è¾ƒ		
-DMC_API short __stdcall dmc_compare_set_config(WORD CardNo,WORD axis,WORD enable, WORD cmp_source); 	//é…ç½®æ¯”è¾ƒå™¨
-DMC_API short __stdcall dmc_compare_get_config(WORD CardNo,WORD axis,WORD *enable, WORD *cmp_source);	//è¯»å–é…ç½®æ¯”è¾ƒå™¨
-DMC_API short __stdcall dmc_compare_clear_points(WORD CardNo,WORD axis); 	//æ¸…é™¤æ‰€æœ‰æ¯”è¾ƒç‚¹
-DMC_API short __stdcall dmc_compare_add_point(WORD CardNo,WORD axis,long pos,WORD dir, WORD action,DWORD actpara); 	//æ·»åŠ æ¯”è¾ƒç‚¹
-DMC_API short __stdcall dmc_compare_get_current_point(WORD CardNo,WORD axis,long *pos); 	//è¯»å–å½“å‰æ¯”è¾ƒç‚¹
-DMC_API short __stdcall dmc_compare_get_points_runned(WORD CardNo,WORD axis,long *pointNum); 	//æŸ¥è¯¢å·²ç»æ¯”è¾ƒè¿‡çš„ç‚¹
-DMC_API short __stdcall dmc_compare_get_points_remained(WORD CardNo,WORD axis,long *pointNum); 	//æŸ¥è¯¢å¯ä»¥åŠ å…¥çš„æ¯”è¾ƒç‚¹æ•°é‡
+//µ¥ÖáµÍËÙÎ»ÖÃ±È½Ï		
+DMC_API short __stdcall dmc_compare_set_config(WORD CardNo,WORD axis,WORD enable, WORD cmp_source); 	//ÅäÖÃ±È½ÏÆ÷
+DMC_API short __stdcall dmc_compare_get_config(WORD CardNo,WORD axis,WORD *enable, WORD *cmp_source);	//¶ÁÈ¡ÅäÖÃ±È½ÏÆ÷
+DMC_API short __stdcall dmc_compare_clear_points(WORD CardNo,WORD axis); 	//Çå³ıËùÓĞ±È½Ïµã
+DMC_API short __stdcall dmc_compare_add_point(WORD CardNo,WORD axis,long pos,WORD dir, WORD action,DWORD actpara); 	//Ìí¼Ó±È½Ïµã
+DMC_API short __stdcall dmc_compare_get_current_point(WORD CardNo,WORD axis,long *pos); 	//¶ÁÈ¡µ±Ç°±È½Ïµã
+DMC_API short __stdcall dmc_compare_get_points_runned(WORD CardNo,WORD axis,long *pointNum); 	//²éÑ¯ÒÑ¾­±È½Ï¹ıµÄµã
+DMC_API short __stdcall dmc_compare_get_points_remained(WORD CardNo,WORD axis,long *pointNum); 	//²éÑ¯¿ÉÒÔ¼ÓÈëµÄ±È½ÏµãÊıÁ¿
 
-//äºŒç»´ä½é€Ÿä½ç½®æ¯”è¾ƒ
-DMC_API short __stdcall dmc_compare_set_config_extern(WORD CardNo,WORD enable, WORD cmp_source); 	//é…ç½®æ¯”è¾ƒå™¨
-DMC_API short __stdcall dmc_compare_get_config_extern(WORD CardNo,WORD *enable, WORD *cmp_source);	//è¯»å–é…ç½®æ¯”è¾ƒå™¨
-DMC_API short __stdcall dmc_compare_clear_points_extern(WORD CardNo); 	//æ¸…é™¤æ‰€æœ‰æ¯”è¾ƒç‚¹
-DMC_API short __stdcall dmc_compare_add_point_extern(WORD CardNo,WORD* axis,long* pos,WORD* dir, WORD action,DWORD actpara); 	//æ·»åŠ ä¸¤è½´ä½ç½®æ¯”è¾ƒç‚¹
-DMC_API short __stdcall dmc_compare_get_current_point_extern(WORD CardNo,long *pos); 	//è¯»å–å½“å‰æ¯”è¾ƒç‚¹
-DMC_API short __stdcall dmc_compare_get_points_runned_extern(WORD CardNo,long *pointNum); 	//æŸ¥è¯¢å·²ç»æ¯”è¾ƒè¿‡çš„ç‚¹
-DMC_API short __stdcall dmc_compare_get_points_remained_extern(WORD CardNo,long *pointNum); 	//æŸ¥è¯¢å¯ä»¥åŠ å…¥çš„äºŒç»´æ¯”è¾ƒç‚¹æ•°é‡
+//¶şÎ¬µÍËÙÎ»ÖÃ±È½Ï
+DMC_API short __stdcall dmc_compare_set_config_extern(WORD CardNo,WORD enable, WORD cmp_source); 	//ÅäÖÃ±È½ÏÆ÷
+DMC_API short __stdcall dmc_compare_get_config_extern(WORD CardNo,WORD *enable, WORD *cmp_source);	//¶ÁÈ¡ÅäÖÃ±È½ÏÆ÷
+DMC_API short __stdcall dmc_compare_clear_points_extern(WORD CardNo); 	//Çå³ıËùÓĞ±È½Ïµã
+DMC_API short __stdcall dmc_compare_add_point_extern(WORD CardNo,WORD* axis,long* pos,WORD* dir, WORD action,DWORD actpara); 	//Ìí¼ÓÁ½ÖáÎ»ÖÃ±È½Ïµã
+DMC_API short __stdcall dmc_compare_get_current_point_extern(WORD CardNo,long *pos); 	//¶ÁÈ¡µ±Ç°±È½Ïµã
+DMC_API short __stdcall dmc_compare_get_points_runned_extern(WORD CardNo,long *pointNum); 	//²éÑ¯ÒÑ¾­±È½Ï¹ıµÄµã
+DMC_API short __stdcall dmc_compare_get_points_remained_extern(WORD CardNo,long *pointNum); 	//²éÑ¯¿ÉÒÔ¼ÓÈëµÄ¶şÎ¬±È½ÏµãÊıÁ¿
 
-//é«˜é€Ÿä½ç½®æ¯”è¾ƒ 
-DMC_API short __stdcall dmc_hcmp_set_mode(WORD CardNo,WORD hcmp, WORD cmp_mode);//è®¾ç½®é«˜é€Ÿæ¯”è¾ƒæ¨¡å¼
+//¸ßËÙÎ»ÖÃ±È½Ï 
+DMC_API short __stdcall dmc_hcmp_set_mode(WORD CardNo,WORD hcmp, WORD cmp_mode);//ÉèÖÃ¸ßËÙ±È½ÏÄ£Ê½
 DMC_API short __stdcall dmc_hcmp_get_mode(WORD CardNo,WORD hcmp, WORD* cmp_mode);
-DMC_API short __stdcall dmc_hcmp_set_config(WORD CardNo,WORD hcmp,WORD axis, WORD cmp_source, WORD cmp_logic,long time);//é…ç½®é«˜é€Ÿæ¯”è¾ƒç›¸å…³å‚æ•°
+DMC_API short __stdcall dmc_hcmp_set_config(WORD CardNo,WORD hcmp,WORD axis, WORD cmp_source, WORD cmp_logic,long time);//ÅäÖÃ¸ßËÙ±È½ÏÏà¹Ø²ÎÊı
 DMC_API short __stdcall dmc_hcmp_get_config(WORD CardNo,WORD hcmp,WORD* axis, WORD* cmp_source, WORD* cmp_logic,long* time);
-DMC_API short __stdcall dmc_hcmp_add_point(WORD CardNo,WORD hcmp, long cmp_pos);//æ·»åŠ æ¯”è¾ƒç‚¹
-DMC_API short __stdcall dmc_hcmp_set_liner(WORD CardNo,WORD hcmp, long Increment,long Count);//è®¾ç½®çº¿æ€§æ¯”è¾ƒæ¨¡å¼ç›¸å…³å‚æ•°
+DMC_API short __stdcall dmc_hcmp_add_point(WORD CardNo,WORD hcmp, long cmp_pos);//Ìí¼Ó±È½Ïµã
+DMC_API short __stdcall dmc_hcmp_set_liner(WORD CardNo,WORD hcmp, long Increment,long Count);//ÉèÖÃÏßĞÔ±È½ÏÄ£Ê½Ïà¹Ø²ÎÊı
 DMC_API short __stdcall dmc_hcmp_get_liner(WORD CardNo,WORD hcmp, long* Increment,long* Count);
-DMC_API short __stdcall dmc_hcmp_get_current_state(WORD CardNo,WORD hcmp,long *remained_points,long *current_point=NULL,long *runned_points=NULL); //è¯»å–æ¯”è¾ƒçŠ¶æ€
-DMC_API short __stdcall dmc_hcmp_clear_points(WORD CardNo,WORD hcmp); 	//æ¸…é™¤æ¯”è¾ƒç‚¹
-DMC_API short __stdcall dmc_read_cmp_pin(WORD CardNo,WORD hcmp); //è¯»å–é«˜é€Ÿæ¯”è¾ƒè¾“å‡ºå£çŠ¶æ€
+DMC_API short __stdcall dmc_hcmp_get_current_state(WORD CardNo,WORD hcmp,long *remained_points,long *current_point=NULL,long *runned_points=NULL); //¶ÁÈ¡±È½Ï×´Ì¬
+DMC_API short __stdcall dmc_hcmp_clear_points(WORD CardNo,WORD hcmp); 	//Çå³ı±È½Ïµã
+DMC_API short __stdcall dmc_read_cmp_pin(WORD CardNo,WORD hcmp); //¶ÁÈ¡¸ßËÙ±È½ÏÊä³ö¿Ú×´Ì¬
 DMC_API short __stdcall dmc_write_cmp_pin(WORD CardNo,WORD hcmp, WORD on_off);
 
-//é€šç”¨IO		
-DMC_API short __stdcall dmc_read_inbit(WORD CardNo,WORD bitno); 	//è¯»å–è¾“å…¥å£çš„çŠ¶æ€
-DMC_API short __stdcall dmc_write_outbit(WORD CardNo,WORD bitno,WORD on_off); 	//è®¾ç½®è¾“å‡ºå£çš„çŠ¶æ€
-DMC_API short __stdcall dmc_read_outbit(WORD CardNo,WORD bitno);  	//è¯»å–è¾“å‡ºå£çš„çŠ¶æ€
-DMC_API DWORD __stdcall dmc_read_inport(WORD CardNo,WORD portno); 	//è¯»å–è¾“å…¥ç«¯å£çš„å€¼
-DMC_API DWORD __stdcall dmc_read_outport(WORD CardNo,WORD portno=0); 	//è¯»å–è¾“å‡ºç«¯å£çš„å€¼
-DMC_API short __stdcall dmc_write_outport(WORD CardNo,WORD portno,DWORD outport_val);  	//è®¾ç½®è¾“å‡ºç«¯å£çš„å€¼
+//Í¨ÓÃIO		
+DMC_API short __stdcall dmc_read_inbit(WORD CardNo,WORD bitno); 	//¶ÁÈ¡ÊäÈë¿ÚµÄ×´Ì¬
+DMC_API short __stdcall dmc_write_outbit(WORD CardNo,WORD bitno,WORD on_off); 	//ÉèÖÃÊä³ö¿ÚµÄ×´Ì¬
+DMC_API short __stdcall dmc_read_outbit(WORD CardNo,WORD bitno);  	//¶ÁÈ¡Êä³ö¿ÚµÄ×´Ì¬
+DMC_API DWORD __stdcall dmc_read_inport(WORD CardNo,WORD portno); 	//¶ÁÈ¡ÊäÈë¶Ë¿ÚµÄÖµ
+DMC_API DWORD __stdcall dmc_read_outport(WORD CardNo,WORD portno=0); 	//¶ÁÈ¡Êä³ö¶Ë¿ÚµÄÖµ
+DMC_API short __stdcall dmc_write_outport(WORD CardNo,WORD portno,DWORD outport_val);  	//ÉèÖÃÊä³ö¶Ë¿ÚµÄÖµ
 
-//IOè¾“å‡ºå»¶æ—¶ç¿»è½¬
+//IOÊä³öÑÓÊ±·­×ª
 DMC_API short __stdcall dmc_IO_TurnOutDelay(WORD CardNo,WORD bitno,DWORD DelayTime);
-//ä»¥ä¸Šå‡½æ•°ä»¥æ¯«ç§’ä¸ºå•ä½å¯ç»§ç»­ä½¿ç”¨ï¼Œæ–°å‡½æ•°å°†æ—¶é—´ç»Ÿä¸€åˆ°ç§’ä¸ºå•ä½
+//ÒÔÉÏº¯ÊıÒÔºÁÃëÎªµ¥Î»¿É¼ÌĞøÊ¹ÓÃ£¬ĞÂº¯Êı½«Ê±¼äÍ³Ò»µ½ÃëÎªµ¥Î»
 DMC_API short __stdcall dmc_reverse_outbit(WORD CardNo,WORD bitno,double reverse_time);
 
-//3800ä¸“ç”¨ IOè®¡æ•°åŠŸèƒ½
+//3800×¨ÓÃ IO¼ÆÊı¹¦ÄÜ
 DMC_API short __stdcall dmc_SetIoCountMode(WORD CardNo,WORD bitno,WORD mode,DWORD filter);
 DMC_API short __stdcall dmc_GetIoCountMode(WORD CardNo,WORD bitno,WORD *mode,DWORD* filter);
 DMC_API short __stdcall dmc_SetIoCountValue(WORD CardNo,WORD bitno,DWORD CountValue);
 DMC_API short __stdcall dmc_GetIoCountValue(WORD CardNo,WORD bitno,DWORD* CountValue);
-//ä»¥ä¸Šå‡½æ•°ä»¥æ¯«ç§’ä¸ºå•ä½å¯ç»§ç»­ä½¿ç”¨ï¼Œæ–°å‡½æ•°å°†æ—¶é—´ç»Ÿä¸€åˆ°ç§’ä¸ºå•ä½
-DMC_API short __stdcall dmc_set_io_count_mode(WORD CardNo,WORD bitno,WORD mode,double filter_time);//è®¾ç½®IOè®¡æ•°æ¨¡å¼
+//ÒÔÉÏº¯ÊıÒÔºÁÃëÎªµ¥Î»¿É¼ÌĞøÊ¹ÓÃ£¬ĞÂº¯Êı½«Ê±¼äÍ³Ò»µ½ÃëÎªµ¥Î»
+DMC_API short __stdcall dmc_set_io_count_mode(WORD CardNo,WORD bitno,WORD mode,double filter_time);//ÉèÖÃIO¼ÆÊıÄ£Ê½
 DMC_API short __stdcall dmc_get_io_count_mode(WORD CardNo,WORD bitno,WORD *mode,double* filter_time);
-DMC_API short __stdcall dmc_set_io_count_value(WORD CardNo,WORD bitno,DWORD CountValue);//è®¾ç½®IOè®¡æ•°å€¼
-DMC_API short __stdcall dmc_get_io_count_value(WORD CardNo,WORD bitno,DWORD* CountValue);//è¯»å–IOè®¡æ•°å€¼
+DMC_API short __stdcall dmc_set_io_count_value(WORD CardNo,WORD bitno,DWORD CountValue);//ÉèÖÃIO¼ÆÊıÖµ
+DMC_API short __stdcall dmc_get_io_count_value(WORD CardNo,WORD bitno,DWORD* CountValue);//¶ÁÈ¡IO¼ÆÊıÖµ
 
-//ä¼ºæœä¸“ç”¨IO		
-DMC_API short __stdcall dmc_set_alm_mode(WORD CardNo,WORD axis,WORD enable,WORD alm_logic,WORD alm_action);	//è®¾ç½®ALMä¿¡å·
-DMC_API short __stdcall dmc_get_alm_mode(WORD CardNo,WORD axis,WORD *enable,WORD *alm_logic,WORD *alm_action);	//è¯»å–è®¾ç½®ALMä¿¡å·
-DMC_API short __stdcall dmc_set_inp_mode(WORD CardNo,WORD axis,WORD enable,WORD inp_logic);	//è®¾ç½®INPä¿¡å·
-DMC_API short __stdcall dmc_get_inp_mode(WORD CardNo,WORD axis,WORD *enable,WORD *inp_logic);	//è¯»å–è®¾ç½®INPä¿¡å·
-DMC_API short __stdcall dmc_read_rdy_pin(WORD CardNo,WORD axis); 	//è¯»å–RDYçŠ¶æ€
-DMC_API short __stdcall dmc_write_erc_pin(WORD CardNo,WORD axis,WORD on_off); 	//æ§åˆ¶ERCä¿¡å·è¾“å‡º
+//ËÅ·ş×¨ÓÃIO		
+DMC_API short __stdcall dmc_set_alm_mode(WORD CardNo,WORD axis,WORD enable,WORD alm_logic,WORD alm_action);	//ÉèÖÃALMĞÅºÅ
+DMC_API short __stdcall dmc_get_alm_mode(WORD CardNo,WORD axis,WORD *enable,WORD *alm_logic,WORD *alm_action);	//¶ÁÈ¡ÉèÖÃALMĞÅºÅ
+DMC_API short __stdcall dmc_set_inp_mode(WORD CardNo,WORD axis,WORD enable,WORD inp_logic);	//ÉèÖÃINPĞÅºÅ
+DMC_API short __stdcall dmc_get_inp_mode(WORD CardNo,WORD axis,WORD *enable,WORD *inp_logic);	//¶ÁÈ¡ÉèÖÃINPĞÅºÅ
+DMC_API short __stdcall dmc_read_rdy_pin(WORD CardNo,WORD axis); 	//¶ÁÈ¡RDY×´Ì¬
+DMC_API short __stdcall dmc_write_erc_pin(WORD CardNo,WORD axis,WORD on_off); 	//¿ØÖÆERCĞÅºÅÊä³ö
 DMC_API short __stdcall dmc_read_erc_pin(WORD CardNo,WORD axis); 
-DMC_API short __stdcall dmc_write_sevon_pin(WORD CardNo,WORD axis,WORD on_off); 	//è¾“å‡ºSEVONä¿¡å·
-DMC_API short __stdcall dmc_read_sevon_pin(WORD CardNo,WORD axis); 	//è¯»å–SEVONä¿¡å·
+DMC_API short __stdcall dmc_write_sevon_pin(WORD CardNo,WORD axis,WORD on_off); 	//Êä³öSEVONĞÅºÅ
+DMC_API short __stdcall dmc_read_sevon_pin(WORD CardNo,WORD axis); 	//¶ÁÈ¡SEVONĞÅºÅ
 
-//DMC3800ä¸“ç”¨ è™šæ‹ŸIOæ˜ å°„  ç”¨äºè¯»å–æ»¤æ³¢åçš„IOå£ç”µå¹³çŠ¶æ€
+//DMC3800×¨ÓÃ ĞéÄâIOÓ³Éä  ÓÃÓÚ¶ÁÈ¡ÂË²¨ºóµÄIO¿ÚµçÆ½×´Ì¬
 DMC_API short __stdcall dmc_set_io_map_virtual(WORD CardNo,WORD bitno,WORD MapIoType,WORD MapIoIndex,double Filter);
 DMC_API short __stdcall dmc_get_io_map_virtual(WORD CardNo,WORD bitno,WORD* MapIoType,WORD* MapIoIndex,double* Filter);
 DMC_API short __stdcall dmc_read_inbit_virtual(WORD CardNo,WORD bitno); 	
 
-//è¿åŠ¨çŠ¶æ€æ£€æµ‹		
-DMC_API double __stdcall dmc_read_current_speed(WORD CardNo,WORD axis);	//è¯»å–æŒ‡å®šè½´çš„å½“å‰é€Ÿåº¦
-DMC_API double __stdcall dmc_read_vector_speed(WORD CardNo);	//è¯»å–å½“å‰å¡çš„æ’è¡¥é€Ÿåº¦
-DMC_API long __stdcall dmc_get_position(WORD CardNo,WORD axis);	//è¯»å–æŒ‡å®šè½´çš„å½“å‰ä½ç½®
-DMC_API short __stdcall dmc_set_position(WORD CardNo,WORD axis,long current_position);	//è®¾å®šæŒ‡å®šè½´çš„å½“å‰ä½ç½®
-DMC_API long __stdcall dmc_get_target_position(WORD CardNo,WORD axis);        //è¯»å–æŒ‡å®šè½´çš„ç›®æ ‡ä½ç½®
-DMC_API short __stdcall dmc_check_done(WORD CardNo,WORD axis);	//è¯»å–æŒ‡å®šè½´çš„è¿åŠ¨çŠ¶æ€
-DMC_API DWORD __stdcall dmc_axis_io_status(WORD CardNo,WORD axis);	//è¯»å–æŒ‡å®šè½´æœ‰å…³è¿åŠ¨ä¿¡å·çš„çŠ¶æ€
-DMC_API short __stdcall dmc_stop(WORD CardNo,WORD axis,WORD stop_mode);	//å•è½´å‡é€Ÿåœæ­¢/ç«‹å³åœæ­¢
-DMC_API short __stdcall dmc_check_done_multicoor(WORD CardNo,WORD Crd); //è°ƒç”¨æ’è¡¥è¿åŠ¨ï¼Œè¯·ä½¿ç”¨è¯¥å‡½æ•°æ£€æµ‹è¿åŠ¨çŠ¶æ€
-DMC_API short __stdcall dmc_stop_multicoor(WORD CardNo,WORD Crd,WORD stop_mode);//è°ƒç”¨æ’è¡¥è¿åŠ¨ï¼Œè¯·ä½¿ç”¨è¯¥å‡½æ•°åœæ­¢è¿åŠ¨çŠ¶æ€
-DMC_API short __stdcall dmc_emg_stop(WORD CardNo);	//ç´§æ€¥åœæ­¢æ‰€æœ‰è½´
-//æ£€æµ‹è½´åˆ°ä½çŠ¶æ€
-DMC_API short __stdcall  dmc_set_factor_error(WORD CardNo,WORD axis,double factor,long error);//è®¾ç½®ç¼–ç å™¨ç³»æ•°ã€è¯¯å·®å¸¦
-DMC_API short __stdcall  dmc_get_factor_error(WORD CardNo,WORD axis,double* factor,long* error);//è¯»å–ç¼–ç å™¨ç³»æ•°ã€è¯¯å·®å¸¦
-DMC_API short __stdcall  dmc_check_success_pulse(WORD CardNo,WORD axis);//æ£€æµ‹æŒ‡ä»¤ä½ç½®åˆ°ä½æƒ…å†µ
-DMC_API short __stdcall  dmc_check_success_encoder(WORD CardNo,WORD axis);//æ£€æµ‹ç¼–ç å™¨åé¦ˆä½ç½®åˆ°ä½æƒ…å†µ
+//ÔË¶¯×´Ì¬¼ì²â		
+DMC_API double __stdcall dmc_read_current_speed(WORD CardNo,WORD axis);	//¶ÁÈ¡Ö¸¶¨ÖáµÄµ±Ç°ËÙ¶È
+DMC_API double __stdcall dmc_read_vector_speed(WORD CardNo);	//¶ÁÈ¡µ±Ç°¿¨µÄ²å²¹ËÙ¶È
+DMC_API long __stdcall dmc_get_position(WORD CardNo,WORD axis);	//¶ÁÈ¡Ö¸¶¨ÖáµÄµ±Ç°Î»ÖÃ
+DMC_API short __stdcall dmc_set_position(WORD CardNo,WORD axis,long current_position);	//Éè¶¨Ö¸¶¨ÖáµÄµ±Ç°Î»ÖÃ
+DMC_API long __stdcall dmc_get_target_position(WORD CardNo,WORD axis);        //¶ÁÈ¡Ö¸¶¨ÖáµÄÄ¿±êÎ»ÖÃ
+DMC_API short __stdcall dmc_check_done(WORD CardNo,WORD axis);	//¶ÁÈ¡Ö¸¶¨ÖáµÄÔË¶¯×´Ì¬
+DMC_API DWORD __stdcall dmc_axis_io_status(WORD CardNo,WORD axis);	//¶ÁÈ¡Ö¸¶¨ÖáÓĞ¹ØÔË¶¯ĞÅºÅµÄ×´Ì¬
+DMC_API short __stdcall dmc_stop(WORD CardNo,WORD axis,WORD stop_mode);	//µ¥Öá¼õËÙÍ£Ö¹/Á¢¼´Í£Ö¹
+DMC_API short __stdcall dmc_check_done_multicoor(WORD CardNo,WORD Crd); //µ÷ÓÃ²å²¹ÔË¶¯£¬ÇëÊ¹ÓÃ¸Ãº¯Êı¼ì²âÔË¶¯×´Ì¬
+DMC_API short __stdcall dmc_stop_multicoor(WORD CardNo,WORD Crd,WORD stop_mode);//µ÷ÓÃ²å²¹ÔË¶¯£¬ÇëÊ¹ÓÃ¸Ãº¯ÊıÍ£Ö¹ÔË¶¯×´Ì¬
+DMC_API short __stdcall dmc_emg_stop(WORD CardNo);	//½ô¼±Í£Ö¹ËùÓĞÖá
+//¼ì²âÖáµ½Î»×´Ì¬
+DMC_API short __stdcall  dmc_set_factor_error(WORD CardNo,WORD axis,double factor,long error);//ÉèÖÃ±àÂëÆ÷ÏµÊı¡¢Îó²î´ø
+DMC_API short __stdcall  dmc_get_factor_error(WORD CardNo,WORD axis,double* factor,long* error);//¶ÁÈ¡±àÂëÆ÷ÏµÊı¡¢Îó²î´ø
+DMC_API short __stdcall  dmc_check_success_pulse(WORD CardNo,WORD axis);//¼ì²âÖ¸ÁîÎ»ÖÃµ½Î»Çé¿ö
+DMC_API short __stdcall  dmc_check_success_encoder(WORD CardNo,WORD axis);//¼ì²â±àÂëÆ÷·´À¡Î»ÖÃµ½Î»Çé¿ö
 
-//3800ä¸“ç”¨ ä¸»å¡ä¸æ¥çº¿ç›’é€šè®¯çŠ¶æ€
-DMC_API short __stdcall dmc_LinkState(WORD CardNo,WORD* State);	//è¿æ¥çŠ¶æ€
+//3800×¨ÓÃ Ö÷¿¨Óë½ÓÏßºĞÍ¨Ñ¶×´Ì¬
+DMC_API short __stdcall dmc_LinkState(WORD CardNo,WORD* State);	//Á¬½Ó×´Ì¬
 
-//å¯†ç ç®¡ç†
-DMC_API short __stdcall dmc_check_sn(WORD CardNo, const char * check_sn);//éªŒè¯å¯†ç ï¼Œæ ¡éªŒ3æ¬¡å¤±è´¥ä¹‹åå†æ¬¡æ ¡éªŒå°†è¿”å›æ ¡éªŒå¤±è´¥
-DMC_API short __stdcall dmc_write_sn(WORD CardNo, const char * new_sn);//æ”¹å†™å¯†ç 
+//ÃÜÂë¹ÜÀí
+DMC_API short __stdcall dmc_check_sn(WORD CardNo, const char * check_sn);//ÑéÖ¤ÃÜÂë£¬Ğ£Ñé3´ÎÊ§°ÜÖ®ºóÔÙ´ÎĞ£Ñé½«·µ»ØĞ£ÑéÊ§°Ü
+DMC_API short __stdcall dmc_write_sn(WORD CardNo, const char * new_sn);//¸ÄĞ´ÃÜÂë
 
-//DMC5410 DMC5800ä¸“ç”¨
-DMC_API short __stdcall dmc_get_axis_run_mode(WORD CardNo, WORD axis,WORD* run_mode);//è½´è¿åŠ¨æ¨¡å¼
-DMC_API short __stdcall dmc_get_equiv(WORD CardNo,WORD axis, double *equiv);//è„‰å†²å½“é‡
+//DMC5410 DMC5800×¨ÓÃ
+DMC_API short __stdcall dmc_get_axis_run_mode(WORD CardNo, WORD axis,WORD* run_mode);//ÖáÔË¶¯Ä£Ê½
+DMC_API short __stdcall dmc_get_equiv(WORD CardNo,WORD axis, double *equiv);//Âö³åµ±Á¿
 DMC_API short __stdcall dmc_set_equiv(WORD CardNo,WORD axis, double equiv);
-DMC_API short __stdcall dmc_set_backlash_unit(WORD CardNo,WORD axis,double backlash);//åå‘é—´éš™
+DMC_API short __stdcall dmc_set_backlash_unit(WORD CardNo,WORD axis,double backlash);//·´Ïò¼äÏ¶
 DMC_API short __stdcall dmc_get_backlash_unit(WORD CardNo,WORD axis,double *backlash);
-DMC_API short __stdcall dmc_set_position_unit(WORD CardNo,WORD axis, double pos);//å½“å‰æŒ‡ä»¤ä½ç½®
+DMC_API short __stdcall dmc_set_position_unit(WORD CardNo,WORD axis, double pos);//µ±Ç°Ö¸ÁîÎ»ÖÃ
 DMC_API short __stdcall dmc_get_position_unit(WORD CardNo,WORD axis, double * pos);
-DMC_API short __stdcall dmc_set_encoder_unit(WORD CardNo,WORD axis, double pos);//å½“å‰åé¦ˆä½ç½®
+DMC_API short __stdcall dmc_set_encoder_unit(WORD CardNo,WORD axis, double pos);//µ±Ç°·´À¡Î»ÖÃ
 DMC_API short __stdcall dmc_get_encoder_unit(WORD CardNo,WORD axis, double * pos);
-DMC_API short __stdcall dmc_pmove_unit(WORD CardNo,WORD axis,double Dist,WORD posi_mode);//å®šé•¿
-DMC_API short __stdcall dmc_t_pmove_unit(WORD CardNo,WORD axis,double Dist,WORD posi_mode);//å¯¹ç§°Tå‹å®šé•¿
-DMC_API short __stdcall dmc_ex_t_pmove_unit(WORD CardNo,WORD axis,double Dist,WORD posi_mode);//éå¯¹ç§°Tå‹å®šé•¿
-DMC_API short __stdcall dmc_s_pmove_unit(WORD CardNo,WORD axis,double Dist,WORD posi_mode);//å¯¹ç§°Så‹å®šé•¿
-DMC_API short __stdcall dmc_ex_s_pmove_unit(WORD CardNo,WORD axis,double Dist,WORD posi_mode);//éå¯¹ç§°Så‹å®šé•¿
-DMC_API short __stdcall dmc_line_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double* Target_Pos,WORD posi_mode);//å•æ®µç›´çº¿
-DMC_API short __stdcall dmc_arc_move_center_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double *Cen_Pos,WORD Arc_Dir,long Circle,WORD posi_mode);//å•æ®µåœ†å¿ƒåœ†å¼§/èºæ—‹çº¿/æ¸å¼€çº¿
-DMC_API short __stdcall dmc_arc_move_radius_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double Arc_Radius,WORD Arc_Dir,long Circle,WORD posi_mode);//å•æ®µåŠå¾„åœ†å¼§/èºæ—‹çº¿
-DMC_API short __stdcall dmc_arc_move_3points_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double *Mid_Pos,long Circle,WORD posi_mode);//å•æ®µä¸‰ç‚¹åœ†å¼§/èºæ—‹çº¿
-DMC_API short __stdcall dmc_rectangle_move_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double* Target_Pos,double* Mark_Pos,long num,WORD rect_mode,WORD posi_mode);//å•æ®µçŸ©å½¢æ’è¡¥
-DMC_API short __stdcall dmc_read_current_speed_unit(WORD CardNo,WORD axis, double *current_speed);//è½´å½“å‰è¿è¡Œé€Ÿåº¦
-DMC_API short __stdcall dmc_set_vector_profile_unit(WORD CardNo,WORD Crd,double Min_Vel,double Max_Vel,double Tacc,double Tdec,double Stop_Vel);//å•æ®µæ’è¡¥é€Ÿåº¦å‚æ•°
+DMC_API short __stdcall dmc_pmove_unit(WORD CardNo,WORD axis,double Dist,WORD posi_mode);//¶¨³¤
+DMC_API short __stdcall dmc_t_pmove_unit(WORD CardNo,WORD axis,double Dist,WORD posi_mode);//¶Ô³ÆTĞÍ¶¨³¤
+DMC_API short __stdcall dmc_ex_t_pmove_unit(WORD CardNo,WORD axis,double Dist,WORD posi_mode);//·Ç¶Ô³ÆTĞÍ¶¨³¤
+DMC_API short __stdcall dmc_s_pmove_unit(WORD CardNo,WORD axis,double Dist,WORD posi_mode);//¶Ô³ÆSĞÍ¶¨³¤
+DMC_API short __stdcall dmc_ex_s_pmove_unit(WORD CardNo,WORD axis,double Dist,WORD posi_mode);//·Ç¶Ô³ÆSĞÍ¶¨³¤
+DMC_API short __stdcall dmc_line_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double* Target_Pos,WORD posi_mode);//µ¥¶ÎÖ±Ïß
+DMC_API short __stdcall dmc_arc_move_center_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double *Cen_Pos,WORD Arc_Dir,long Circle,WORD posi_mode);//µ¥¶ÎÔ²ĞÄÔ²»¡/ÂİĞıÏß/½¥¿ªÏß
+DMC_API short __stdcall dmc_arc_move_radius_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double Arc_Radius,WORD Arc_Dir,long Circle,WORD posi_mode);//µ¥¶Î°ë¾¶Ô²»¡/ÂİĞıÏß
+DMC_API short __stdcall dmc_arc_move_3points_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double *Mid_Pos,long Circle,WORD posi_mode);//µ¥¶ÎÈıµãÔ²»¡/ÂİĞıÏß
+DMC_API short __stdcall dmc_rectangle_move_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double* Target_Pos,double* Mark_Pos,long num,WORD rect_mode,WORD posi_mode);//µ¥¶Î¾ØĞÎ²å²¹
+DMC_API short __stdcall dmc_read_current_speed_unit(WORD CardNo,WORD axis, double *current_speed);//Öáµ±Ç°ÔËĞĞËÙ¶È
+DMC_API short __stdcall dmc_set_vector_profile_unit(WORD CardNo,WORD Crd,double Min_Vel,double Max_Vel,double Tacc,double Tdec,double Stop_Vel);//µ¥¶Î²å²¹ËÙ¶È²ÎÊı
 DMC_API short __stdcall dmc_get_vector_profile_unit(WORD CardNo,WORD Crd,double* Min_Vel,double* Max_Vel,double* Tacc,double* Tdec,double* Stop_Vel);
-DMC_API short __stdcall dmc_set_vector_s_profile(WORD CardNo,WORD Crd,WORD s_mode,double s_para);	//è®¾ç½®Så‹é€Ÿåº¦æ›²çº¿å‚æ•°
+DMC_API short __stdcall dmc_set_vector_s_profile(WORD CardNo,WORD Crd,WORD s_mode,double s_para);	//ÉèÖÃSĞÍËÙ¶ÈÇúÏß²ÎÊı
 DMC_API short __stdcall dmc_get_vector_s_profile(WORD CardNo,WORD Crd,WORD s_mode,double *s_para);
-DMC_API short __stdcall dmc_set_profile_unit(WORD CardNo,WORD axis,double Min_Vel,double Max_Vel,double Tacc,double Tdec,double Stop_Vel);//å•è½´é€Ÿåº¦å‚æ•°
+DMC_API short __stdcall dmc_set_profile_unit(WORD CardNo,WORD axis,double Min_Vel,double Max_Vel,double Tacc,double Tdec,double Stop_Vel);//µ¥ÖáËÙ¶È²ÎÊı
 DMC_API short __stdcall dmc_get_profile_unit(WORD CardNo,WORD axis,double* Min_Vel,double* Max_Vel,double* Tacc,double* Tdec,double* Stop_Vel);
-DMC_API short __stdcall dmc_reset_target_position_unit(WORD CardNo,WORD axis, double New_Pos);//åœ¨çº¿å˜ä½
-DMC_API short __stdcall dmc_update_target_position_unit(WORD CardNo,WORD axis, double New_Pos);//å¼ºè¡Œå˜ä½
-DMC_API short __stdcall dmc_change_speed_unit(WORD CardNo,WORD axis, double New_Vel,double Taccdec);//åœ¨çº¿å˜é€Ÿ
-//è¿ç»­æ’è¡¥
-DMC_API short __stdcall dmc_conti_open_list(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList); //æ‰“å¼€è¿ç»­ç¼“å­˜åŒº
-DMC_API short __stdcall dmc_conti_close_list(WORD CardNo,WORD Crd);	//å…³é—­è¿ç»­ç¼“å­˜åŒº
-DMC_API short __stdcall dmc_conti_stop_list(WORD CardNo,WORD Crd,WORD stop_mode);	//è¿ç»­æ’è¡¥ä¸­åœæ­¢
-DMC_API short __stdcall dmc_conti_pause_list(WORD CardNo,WORD Crd);	//è¿ç»­æ’è¡¥ä¸­æš‚åœ
-DMC_API short __stdcall dmc_conti_start_list(WORD CardNo,WORD Crd);	//å¼€å§‹è¿ç»­æ’è¡¥
-DMC_API long __stdcall dmc_conti_remain_space(WORD CardNo,WORD Crd);	//æŸ¥è¿ç»­æ’è¡¥å‰©ä½™ç¼“å­˜æ•°
-DMC_API long __stdcall dmc_conti_read_current_mark (WORD CardNo,WORD Crd);	//è¯»å–å½“å‰è¿ç»­æ’è¡¥æ®µçš„æ ‡å·
-DMC_API short __stdcall dmc_conti_set_blend(WORD CardNo,WORD Crd,WORD enable);//blendæ‹è§’è¿‡åº¦æ¨¡å¼
+DMC_API short __stdcall dmc_reset_target_position_unit(WORD CardNo,WORD axis, double New_Pos);//ÔÚÏß±äÎ»
+DMC_API short __stdcall dmc_update_target_position_unit(WORD CardNo,WORD axis, double New_Pos);//Ç¿ĞĞ±äÎ»
+DMC_API short __stdcall dmc_change_speed_unit(WORD CardNo,WORD axis, double New_Vel,double Taccdec);//ÔÚÏß±äËÙ
+//Á¬Ğø²å²¹
+DMC_API short __stdcall dmc_conti_open_list(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList); //´ò¿ªÁ¬Ğø»º´æÇø
+DMC_API short __stdcall dmc_conti_close_list(WORD CardNo,WORD Crd);	//¹Ø±ÕÁ¬Ğø»º´æÇø
+DMC_API short __stdcall dmc_conti_stop_list(WORD CardNo,WORD Crd,WORD stop_mode);	//Á¬Ğø²å²¹ÖĞÍ£Ö¹
+DMC_API short __stdcall dmc_conti_pause_list(WORD CardNo,WORD Crd);	//Á¬Ğø²å²¹ÖĞÔİÍ£
+DMC_API short __stdcall dmc_conti_start_list(WORD CardNo,WORD Crd);	//¿ªÊ¼Á¬Ğø²å²¹
+DMC_API long __stdcall dmc_conti_remain_space(WORD CardNo,WORD Crd);	//²éÁ¬Ğø²å²¹Ê£Óà»º´æÊı
+DMC_API long __stdcall dmc_conti_read_current_mark (WORD CardNo,WORD Crd);	//¶ÁÈ¡µ±Ç°Á¬Ğø²å²¹¶ÎµÄ±êºÅ
+DMC_API short __stdcall dmc_conti_set_blend(WORD CardNo,WORD Crd,WORD enable);//blend¹Õ½Ç¹ı¶ÈÄ£Ê½
 DMC_API short __stdcall dmc_conti_get_blend(WORD CardNo,WORD Crd,WORD* enable);
-DMC_API short __stdcall dmc_conti_set_profile_unit(WORD CardNo,WORD Crd,double Min_Vel,double Max_vel,double Tacc,double Tdec,double Stop_Vel);//è®¾ç½®è¿ç»­æ’è¡¥é€Ÿåº¦
-DMC_API short __stdcall dmc_conti_set_s_profile(WORD CardNo,WORD Crd,WORD s_mode,double s_para);//è®¾ç½®è¿ç»­æ’è¡¥å¹³æ»‘æ—¶é—´
+DMC_API short __stdcall dmc_conti_set_profile_unit(WORD CardNo,WORD Crd,double Min_Vel,double Max_vel,double Tacc,double Tdec,double Stop_Vel);//ÉèÖÃÁ¬Ğø²å²¹ËÙ¶È
+DMC_API short __stdcall dmc_conti_set_s_profile(WORD CardNo,WORD Crd,WORD s_mode,double s_para);//ÉèÖÃÁ¬Ğø²å²¹Æ½»¬Ê±¼ä
 DMC_API short __stdcall dmc_conti_get_s_profile(WORD CardNo,WORD Crd,WORD s_mode,double* s_para);
-DMC_API short __stdcall dmc_conti_set_pause_output(WORD CardNo,WORD Crd,WORD action,long mask,long state);//æš‚åœæ—¶IOè¾“å‡º actionï¼š0-ä¸åŠ¨ä½œï¼›1-æš‚åœæ—¶è¾“å‡ºï¼›2-æš‚åœæ—¶è¾“å‡º, ç»§ç»­è¿è¡Œæ—¶æ¢å¤ï¼›3-åœæ­¢æ—¶è¾“å‡ºã€‚
+DMC_API short __stdcall dmc_conti_set_pause_output(WORD CardNo,WORD Crd,WORD action,long mask,long state);//ÔİÍ£Ê±IOÊä³ö action£º0-²»¶¯×÷£»1-ÔİÍ£Ê±Êä³ö£»2-ÔİÍ£Ê±Êä³ö, ¼ÌĞøÔËĞĞÊ±»Ö¸´£»3-Í£Ö¹Ê±Êä³ö¡£
 DMC_API short __stdcall dmc_conti_get_pause_output(WORD CardNo,WORD Crd,WORD* action,long* mask,long* state);
-DMC_API short __stdcall dmc_conti_set_override(WORD CardNo,WORD Crd,double Percent);//è®¾ç½®æ¯æ®µé€Ÿåº¦æ¯”ä¾‹  ç¼“å†²åŒºæŒ‡ä»¤
-DMC_API short __stdcall dmc_conti_change_speed_ratio (WORD CardNo,WORD Crd,double percent);//è¿ç»­æ’è¡¥åŠ¨æ€å˜é€Ÿ
-DMC_API short __stdcall dmc_conti_get_run_state(WORD CardNo,WORD Crd);//è¯»å–è¿ç»­æ’è¡¥çŠ¶æ€ï¼š0-è¿è¡Œï¼Œ1-æš‚åœï¼Œ2-æ­£å¸¸åœæ­¢ï¼Œ3-å¼‚å¸¸åœæ­¢
-DMC_API short __stdcall dmc_conti_check_done(WORD CardNo,WORD Crd);//æ£€æµ‹è¿ç»­æ’è¡¥è¿åŠ¨çŠ¶æ€ï¼š0-è¿è¡Œï¼Œ1-åœæ­¢
-DMC_API short __stdcall dmc_conti_wait_input(WORD CardNo,WORD Crd,WORD bitno,WORD on_off,double TimeOut,long mark);//è®¾ç½®è¿ç»­æ’è¡¥ç­‰å¾…è¾“å…¥
-DMC_API short __stdcall dmc_conti_delay_outbit_to_start(WORD CardNo, WORD Crd, WORD bitno,WORD on_off,double delay_value,WORD delay_mode,double ReverseTime);//ç›¸å¯¹äºè½¨è¿¹æ®µèµ·ç‚¹IOæ»åè¾“å‡º
-DMC_API short __stdcall dmc_conti_delay_outbit_to_stop(WORD CardNo, WORD Crd, WORD bitno,WORD on_off,double delay_time,double ReverseTime);//ç›¸å¯¹äºè½¨è¿¹æ®µç»ˆç‚¹IOæ»åè¾“å‡º
-DMC_API short __stdcall dmc_conti_ahead_outbit_to_stop(WORD CardNo, WORD Crd, WORD bitno,WORD on_off,double ahead_value,WORD ahead_mode,double ReverseTime);//ç›¸å¯¹è½¨è¿¹æ®µç»ˆç‚¹IOæå‰è¾“å‡º
-DMC_API short __stdcall dmc_conti_accurate_outbit_unit(WORD CardNo, WORD Crd, WORD cmp_no,WORD on_off,WORD map_axis,double rel_dist,WORD pos_source,double ReverseTime);//ç¡®å®šä½ç½®ç²¾ç¡®è¾“å‡º
-DMC_API short __stdcall dmc_conti_write_outbit(WORD CardNo, WORD Crd, WORD bitno,WORD on_off,double ReverseTime);//ç¼“å†²åŒºç«‹å³IOè¾“å‡º
-DMC_API short __stdcall dmc_conti_clear_io_action(WORD CardNo, WORD Crd, DWORD IoMask);//æ¸…é™¤æ®µå†…æœªæ‰§è¡Œå®Œçš„IOåŠ¨ä½œ,é˜²æ­¢åœ¨ä¸‹ä¸€æ®µæ‰§è¡Œ
-DMC_API short __stdcall dmc_conti_delay(WORD CardNo, WORD Crd, double delay_time,long mark);//æ·»åŠ å»¶æ—¶æŒ‡ä»¤
-DMC_API short __stdcall dmc_conti_line_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double* Target_Pos,WORD posi_mode,long mark);//è¿ç»­æ’è¡¥ç›´çº¿
-DMC_API short __stdcall dmc_conti_arc_move_center_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double *Cen_Pos,WORD Arc_Dir,long Circle,WORD posi_mode,long mark);//åœ†å¿ƒç»ˆç‚¹å¼åœ†å¼§/èºæ—‹çº¿/æ¸å¼€çº¿/åŒå¿ƒåœ†
-DMC_API short __stdcall dmc_conti_arc_move_radius_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double Arc_Radius,WORD Arc_Dir,long Circle,WORD posi_mode,long mark);//åŠå¾„ç»ˆç‚¹å¼åœ†å¼§/èºæ—‹çº¿
-DMC_API short __stdcall dmc_conti_arc_move_3points_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double *Mid_Pos,long Circle,WORD posi_mode,long mark);//ä¸‰ç‚¹å¼åœ†å¼§/èºæ—‹çº¿
-DMC_API short __stdcall dmc_conti_set_involute_mode(WORD CardNo,WORD Crd,WORD mode);//æ¸å¼€çº¿æ•´åœ†å°é—­
+DMC_API short __stdcall dmc_conti_set_override(WORD CardNo,WORD Crd,double Percent);//ÉèÖÃÃ¿¶ÎËÙ¶È±ÈÀı  »º³åÇøÖ¸Áî
+DMC_API short __stdcall dmc_conti_change_speed_ratio (WORD CardNo,WORD Crd,double percent);//Á¬Ğø²å²¹¶¯Ì¬±äËÙ
+DMC_API short __stdcall dmc_conti_get_run_state(WORD CardNo,WORD Crd);//¶ÁÈ¡Á¬Ğø²å²¹×´Ì¬£º0-ÔËĞĞ£¬1-ÔİÍ££¬2-Õı³£Í£Ö¹£¬3-Òì³£Í£Ö¹
+DMC_API short __stdcall dmc_conti_check_done(WORD CardNo,WORD Crd);//¼ì²âÁ¬Ğø²å²¹ÔË¶¯×´Ì¬£º0-ÔËĞĞ£¬1-Í£Ö¹
+DMC_API short __stdcall dmc_conti_wait_input(WORD CardNo,WORD Crd,WORD bitno,WORD on_off,double TimeOut,long mark);//ÉèÖÃÁ¬Ğø²å²¹µÈ´ıÊäÈë
+DMC_API short __stdcall dmc_conti_delay_outbit_to_start(WORD CardNo, WORD Crd, WORD bitno,WORD on_off,double delay_value,WORD delay_mode,double ReverseTime);//Ïà¶ÔÓÚ¹ì¼£¶ÎÆğµãIOÖÍºóÊä³ö
+DMC_API short __stdcall dmc_conti_delay_outbit_to_stop(WORD CardNo, WORD Crd, WORD bitno,WORD on_off,double delay_time,double ReverseTime);//Ïà¶ÔÓÚ¹ì¼£¶ÎÖÕµãIOÖÍºóÊä³ö
+DMC_API short __stdcall dmc_conti_ahead_outbit_to_stop(WORD CardNo, WORD Crd, WORD bitno,WORD on_off,double ahead_value,WORD ahead_mode,double ReverseTime);//Ïà¶Ô¹ì¼£¶ÎÖÕµãIOÌáÇ°Êä³ö
+DMC_API short __stdcall dmc_conti_accurate_outbit_unit(WORD CardNo, WORD Crd, WORD cmp_no,WORD on_off,WORD map_axis,double rel_dist,WORD pos_source,double ReverseTime);//È·¶¨Î»ÖÃ¾«È·Êä³ö
+DMC_API short __stdcall dmc_conti_write_outbit(WORD CardNo, WORD Crd, WORD bitno,WORD on_off,double ReverseTime);//»º³åÇøÁ¢¼´IOÊä³ö
+DMC_API short __stdcall dmc_conti_clear_io_action(WORD CardNo, WORD Crd, DWORD IoMask);//Çå³ı¶ÎÄÚÎ´Ö´ĞĞÍêµÄIO¶¯×÷,·ÀÖ¹ÔÚÏÂÒ»¶ÎÖ´ĞĞ
+DMC_API short __stdcall dmc_conti_delay(WORD CardNo, WORD Crd, double delay_time,long mark);//Ìí¼ÓÑÓÊ±Ö¸Áî
+DMC_API short __stdcall dmc_conti_line_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double* Target_Pos,WORD posi_mode,long mark);//Á¬Ğø²å²¹Ö±Ïß
+DMC_API short __stdcall dmc_conti_arc_move_center_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double *Cen_Pos,WORD Arc_Dir,long Circle,WORD posi_mode,long mark);//Ô²ĞÄÖÕµãÊ½Ô²»¡/ÂİĞıÏß/½¥¿ªÏß/Í¬ĞÄÔ²
+DMC_API short __stdcall dmc_conti_arc_move_radius_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double Arc_Radius,WORD Arc_Dir,long Circle,WORD posi_mode,long mark);//°ë¾¶ÖÕµãÊ½Ô²»¡/ÂİĞıÏß
+DMC_API short __stdcall dmc_conti_arc_move_3points_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double *Target_Pos,double *Mid_Pos,long Circle,WORD posi_mode,long mark);//ÈıµãÊ½Ô²»¡/ÂİĞıÏß
+DMC_API short __stdcall dmc_conti_set_involute_mode(WORD CardNo,WORD Crd,WORD mode);//½¥¿ªÏßÕûÔ²·â±Õ
 DMC_API short __stdcall dmc_conti_get_involute_mode(WORD CardNo,WORD Crd,WORD* mode);
-DMC_API short __stdcall dmc_conti_rectangle_move_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double* Target_Pos,double* Mark_Pos,long num,WORD rect_mode,WORD posi_mode,long mark);//çŸ©å½¢æ’è¡¥
-DMC_API short __stdcall dmc_calculate_arclength_center(double* start_pos,double *target_pos,double *cen_pos, WORD arc_dir,double circle,double* ArcLength);//è®¡ç®—åœ†å¿ƒåœ†å¼§å¼§é•¿
-DMC_API short __stdcall dmc_calculate_arclength_radius(double* start_pos,double *target_pos,double arc_radius, WORD arc_dir,double circle,double* ArcLength);//è®¡ç®—åŠå¾„åœ†å¼§å¼§é•¿
-DMC_API short __stdcall dmc_calculate_arclength_3point(double *start_pos,double *mid_pos, double *end_pos,double circle,double* ArcLength);//è®¡ç®—ä¸‰ç‚¹åœ†å¼§å¼§é•¿
-//DMC5800ä¸“ç”¨ PWMåŠCanIO
-DMC_API short __stdcall dmc_set_pwm_enable(WORD CardNo,WORD enable);//7å·è½´åˆ‡æ¢ä¸ºPWMè¾“å‡º
+DMC_API short __stdcall dmc_conti_rectangle_move_unit(WORD CardNo,WORD Crd,WORD AxisNum,WORD* AxisList,double* Target_Pos,double* Mark_Pos,long num,WORD rect_mode,WORD posi_mode,long mark);//¾ØĞÎ²å²¹
+DMC_API short __stdcall dmc_calculate_arclength_center(double* start_pos,double *target_pos,double *cen_pos, WORD arc_dir,double circle,double* ArcLength);//¼ÆËãÔ²ĞÄÔ²»¡»¡³¤
+DMC_API short __stdcall dmc_calculate_arclength_radius(double* start_pos,double *target_pos,double arc_radius, WORD arc_dir,double circle,double* ArcLength);//¼ÆËã°ë¾¶Ô²»¡»¡³¤
+DMC_API short __stdcall dmc_calculate_arclength_3point(double *start_pos,double *mid_pos, double *end_pos,double circle,double* ArcLength);//¼ÆËãÈıµãÔ²»¡»¡³¤
+//DMC5800×¨ÓÃ PWM¼°CanIO
+DMC_API short __stdcall dmc_set_pwm_enable(WORD CardNo,WORD enable);//7ºÅÖáÇĞ»»ÎªPWMÊä³ö
 DMC_API short __stdcall dmc_get_pwm_enable(WORD CardNo,WORD* enable);
-DMC_API short __stdcall dmc_conti_set_pwm_output(WORD CardNo,WORD Crd, WORD pwm_no,double fDuty, double fFre);//è¿ç»­æ’è¡¥ä¸­è®¾ç½®PWMè¾“å‡º
-DMC_API short __stdcall dmc_set_pwm_output(WORD CardNo,WORD pwm_no,double fDuty, double fFre);//è®¾ç½®PWMè¾“å‡º
+DMC_API short __stdcall dmc_conti_set_pwm_output(WORD CardNo,WORD Crd, WORD pwm_no,double fDuty, double fFre);//Á¬Ğø²å²¹ÖĞÉèÖÃPWMÊä³ö
+DMC_API short __stdcall dmc_set_pwm_output(WORD CardNo,WORD pwm_no,double fDuty, double fFre);//ÉèÖÃPWMÊä³ö
 DMC_API short __stdcall dmc_get_pwm_output(WORD CardNo,WORD pwm_no,double* fDuty, double* fFre);
-DMC_API short __stdcall dmc_conti_set_pwm_follow_speed(WORD CardNo,WORD Crd,WORD pwm_no,WORD mode,double MaxVel,double MaxValue,double OutValue);//PWMé€Ÿåº¦è·Ÿéš
+DMC_API short __stdcall dmc_conti_set_pwm_follow_speed(WORD CardNo,WORD Crd,WORD pwm_no,WORD mode,double MaxVel,double MaxValue,double OutValue);//PWMËÙ¶È¸úËæ
 DMC_API short __stdcall dmc_conti_get_pwm_follow_speed(WORD CardNo,WORD Crd,WORD pwm_no,WORD* mode,double* MaxVel,double* MaxValue,double* OutValue);
 
-DMC_API short __stdcall dmc_set_can_state(WORD CardNo,WORD NodeNum,WORD state);//0-æ–­å¼€ï¼›1-è¿æ¥ï¼›2-å¤ä½åè‡ªåŠ¨è¿æ¥
-DMC_API short __stdcall dmc_get_can_state(WORD CardNo,WORD* NodeNum,WORD* state);////0-æ–­å¼€ï¼›1-è¿æ¥ï¼›2-å¼‚å¸¸
-DMC_API short __stdcall dmc_get_can_errcode(WORD CardNo,WORD *Errcode);//è¯»å–CanIoé€šè®¯é”™è¯¯ç 
+DMC_API short __stdcall dmc_set_can_state(WORD CardNo,WORD NodeNum,WORD state,WORD Baud);//0-¶Ï¿ª£»1-Á¬½Ó£»2-¸´Î»ºó×Ô¶¯Á¬½Ó
+DMC_API short __stdcall dmc_get_can_state(WORD CardNo,WORD* NodeNum,WORD* state);////0-¶Ï¿ª£»1-Á¬½Ó£»2-Òì³£
+DMC_API short __stdcall dmc_get_can_errcode(WORD CardNo,WORD *Errcode);//¶ÁÈ¡CanIoÍ¨Ñ¶´íÎóÂë
 DMC_API short __stdcall dmc_write_can_outbit(WORD CardNo,WORD Node,WORD bitno,WORD on_off);
 DMC_API short __stdcall dmc_read_can_outbit(WORD CardNo,WORD Node,WORD bitno);
 DMC_API short __stdcall dmc_read_can_inbit(WORD CardNo,WORD Node,WORD bitno);
-DMC_API short __stdcall dmc_write_can_outport(WORD CardNo,WORD Node,WORD portno,DWORD outport_val);//å†™CanIoè¾“å‡ºå£
-DMC_API DWORD __stdcall dmc_read_can_outport(WORD CardNo,WORD Node,WORD portno);//è¯»å–CanIoè¾“å‡ºç«¯å£
-DMC_API DWORD __stdcall dmc_read_can_inport(WORD CardNo,WORD Node,WORD portno);//è¯»å–CanIoè¾“å…¥ç«¯å£
+DMC_API short __stdcall dmc_write_can_outport(WORD CardNo,WORD Node,WORD portno,DWORD outport_val);//Ğ´CanIoÊä³ö¿Ú
+DMC_API DWORD __stdcall dmc_read_can_outport(WORD CardNo,WORD Node,WORD portno);//¶ÁÈ¡CanIoÊä³ö¶Ë¿Ú
+DMC_API DWORD __stdcall dmc_read_can_inport(WORD CardNo,WORD Node,WORD portno);//¶ÁÈ¡CanIoÊäÈë¶Ë¿Ú
 
-DMC_API short __stdcall dmc_get_stop_reason(WORD CardNo,WORD axis,long* StopReason);//è¯»å–åœæ­¢åŸå› 
-DMC_API short __stdcall dmc_clear_stop_reason(WORD CardNo,WORD axis);//æ¸…é™¤åœæ­¢åŸå› 
-//DMC3410 å‡é€Ÿåœæ­¢ å¯¹åº” 25 26 27 28è¾“å…¥å£
-//DMC_API short __stdcall dmc_set_io_dstp_mode(WORD CardNo,WORD axis,WORD enable,WORD logic); 	//å¯ç”¨å‡é€Ÿåœæ­¢IOåŠæœ‰æ•ˆç”µå¹³ //enable:0-ç¦ç”¨ï¼Œ1-æŒ‰æ—¶é—´å‡é€Ÿåœæ­¢ï¼Œ2-æŒ‰è·ç¦»å‡é€Ÿåœæ­¢
+DMC_API short __stdcall dmc_get_stop_reason(WORD CardNo,WORD axis,long* StopReason);//¶ÁÈ¡Í£Ö¹Ô­Òò
+DMC_API short __stdcall dmc_clear_stop_reason(WORD CardNo,WORD axis);//Çå³ıÍ£Ö¹Ô­Òò
+//DMC3410 ¼õËÙÍ£Ö¹ ¶ÔÓ¦ 25 26 27 28ÊäÈë¿Ú
+//DMC_API short __stdcall dmc_set_io_dstp_mode(WORD CardNo,WORD axis,WORD enable,WORD logic); 	//ÆôÓÃ¼õËÙÍ£Ö¹IO¼°ÓĞĞ§µçÆ½ //enable:0-½ûÓÃ£¬1-°´Ê±¼ä¼õËÙÍ£Ö¹£¬2-°´¾àÀë¼õËÙÍ£Ö¹
 //DMC_API short __stdcall dmc_get_io_dstp_mode(WORD CardNo,WORD axis,WORD *enable,WORD *logic); 
 //DMC_API short __stdcall dmc_set_dec_stop_time(WORD CardNo,WORD axis,double time);
 //DMC_API short __stdcall dmc_get_dec_stop_time(WORD CardNo,WORD axis,double *time); 
-DMC_API short __stdcall dmc_set_dec_stop_dist(WORD CardNo,WORD axis,long dist);	//è®¾ç½®å‡é€Ÿåœæ­¢è·ç¦»
+DMC_API short __stdcall dmc_set_dec_stop_dist(WORD CardNo,WORD axis,long dist);	//ÉèÖÃ¼õËÙÍ£Ö¹¾àÀë
 DMC_API short __stdcall dmc_get_dec_stop_dist(WORD CardNo,WORD axis,long *dist);
 
-//DMC5600å®šåˆ¶æ¥çº¿ç›’
-DMC_API short __stdcall dmc_set_da_enable(WORD CardNo,WORD enable);//å¼€å¯DAè¾“å‡º
+//DMC5600¶¨ÖÆ½ÓÏßºĞ
+DMC_API short __stdcall dmc_set_da_enable(WORD CardNo,WORD enable);//¿ªÆôDAÊä³ö
 DMC_API short __stdcall dmc_get_da_enable(WORD CardNo,WORD* enable);
-DMC_API short __stdcall dmc_set_da_output(WORD CardNo,WORD channel,double Vout);//è®¾ç½®DAè¾“å‡º
+DMC_API short __stdcall dmc_set_da_output(WORD CardNo,WORD channel,double Vout);//ÉèÖÃDAÊä³ö
 DMC_API short __stdcall dmc_get_da_output(WORD CardNo,WORD channel,double* Vout);
 #ifdef __cplusplus
 }
